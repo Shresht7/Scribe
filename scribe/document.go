@@ -29,3 +29,11 @@ func NewDocument(opts ...*Document) *Document {
 	// Return the document instance
 	return document
 }
+
+// WithSeparator sets the separator for the document.
+// This is the string that will be used to separate the nodes.
+// The default separator is a single newline.
+func (document *Document) WithSeparator(separator string) *Document {
+	document.Separator = separator
+	return document
+}
