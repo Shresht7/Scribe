@@ -4,15 +4,13 @@ package scribe
 
 // Document is just a collection of text nodes separated by a newline.
 type Document struct {
-	*NodeText
+	NodeText
 }
 
 // Instantiate a new document
 func NewDocument(opts ...*Document) *Document {
 	// Instantiate a new document with default options
-	document := &Document{
-		Text(),
-	}
+	document := &Document{}
 	document.WithSeparator("\n")
 
 	// If options are passed, override the defaults
