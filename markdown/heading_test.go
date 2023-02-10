@@ -82,7 +82,7 @@ func TestHeading(t *testing.T) {
 		{
 			description: "Heading with text and inline elements",
 			heading: Heading(1,
-				Bold("This is some bold text"),
+				Bold(scribe.Text("This is some bold text")),
 				scribe.Text("This is a test heading."),
 				scribe.Text("This is some random text"),
 			).String(),
