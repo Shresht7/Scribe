@@ -4,17 +4,16 @@ package scribe
 
 // Document is just a collection of text nodes separated by a newline.
 type Document struct {
-	NodeText
+	*NodeText
 }
 
 // Instantiate a new document
 func NewDocument(opts ...*Document) *Document {
 	// Instantiate a new document with default options
 	document := &Document{
-		NodeText: NodeText{
-			Separator: "\n",
-		},
+		Text(),
 	}
+	document.WithSeparator("\n")
 
 	// If options are passed, override the defaults
 	if len(opts) > 0 {
@@ -27,13 +26,5 @@ func NewDocument(opts ...*Document) *Document {
 	}
 
 	// Return the document instance
-	return document
-}
-
-// WithSeparator sets the separator for the document.
-// This is the string that will be used to separate the nodes.
-// The default separator is a single newline.
-func (document *Document) WithSeparator(separator string) *Document {
-	document.Separator = separator
 	return document
 }

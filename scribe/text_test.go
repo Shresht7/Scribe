@@ -26,7 +26,7 @@ func TestText(t *testing.T) {
 		{
 			name:     "Multiple",
 			input:    []string{"Hello,", "world!"},
-			expected: "Hello,world!",
+			expected: "Hello, world!",
 		},
 		{
 			name:      "Multiple with separator",
@@ -37,7 +37,7 @@ func TestText(t *testing.T) {
 		{
 			name:     "Multiple with empty strings",
 			input:    []string{"One", "", "Three"},
-			expected: "OneThree",
+			expected: "One  Three",
 		},
 		{
 			name:      "Multiple with newline strings",
@@ -56,7 +56,7 @@ func TestText(t *testing.T) {
 
 			// Join the text if a separator is provided
 			if testCase.separator != "" {
-				text.Join(testCase.separator)
+				text.WithSeparator(testCase.separator)
 			}
 
 			// Check the output
