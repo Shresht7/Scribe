@@ -13,8 +13,10 @@ func ExampleMarkdownDocument() {
 
 	// Append some text nodes to the document
 	document.AppendChild(
-		markdown.Heading(1, "Markdown Document"),
+		markdown.Heading(1, scribe.Text("Markdown Document")),
 		markdown.Paragraph(
+			scribe.Text("Woah this is some paragraph!"),
+		).AppendChild(
 			scribe.Text("This is a test document."),
 		),
 	)
@@ -25,5 +27,5 @@ func ExampleMarkdownDocument() {
 	// Output:
 	// # Markdown Document
 	//
-	// This is a test document.
+	// Woah this is some paragraph! This is a test document.
 }
