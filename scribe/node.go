@@ -25,7 +25,14 @@ func (literal *NodeLiteral) String() string {
 
 // ParentNode is a node containing other nodes
 type ParentNode struct {
-	Nodes []Node
+	Separator string
+	Nodes     []Node
+}
+
+// WithSeparator sets the separator for the parent node.
+func (parent *ParentNode) WithSeparator(separator string) *ParentNode {
+	parent.Separator = separator
+	return parent
 }
 
 // Implement the Node interface for ParentNode.
@@ -36,7 +43,7 @@ func (parent *ParentNode) String() string {
 	for _, node := range parent.Nodes {
 		res = append(res, node.String())
 	}
-	return strings.Join(res, "")
+	return strings.Join(res, parent.Separator)
 }
 
 // AppendChild appends the given nodes to the parent node
