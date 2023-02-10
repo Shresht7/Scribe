@@ -16,7 +16,13 @@ type MarkdownDocument struct {
 
 // Instantiate a new document with the given contents
 func NewDocument() *MarkdownDocument {
-	document := scribe.NewDocument().WithSeparator("\n\n")
+	// Create a new document
+	document := scribe.NewDocument()
+
+	// Set the separator to a double newline for Markdown
+	document.WithSeparator("\n\n")
+
+	// Return the document
 	return &MarkdownDocument{
 		buf:      bytes.NewBuffer([]byte{}),
 		Document: *document,
