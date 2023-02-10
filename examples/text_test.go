@@ -17,7 +17,7 @@ func ExampleDocument_basic() {
 	// Append some text nodes to the document
 	document.AppendChild(
 		scribe.Text("Hello, world!"),
-		scribe.Text("This", "is", "a", "test", "document.").Join("---"),
+		scribe.Text("This", "is", "a", "test", "document.").WithSeparator("---"),
 	)
 
 	// Print the document to the console
