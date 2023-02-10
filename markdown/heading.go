@@ -15,7 +15,7 @@ type NodeHeading struct {
 }
 
 // Instantiate a new heading with the given contents
-func Heading(level int, contents ...string) *NodeHeading {
+func Heading(level int, contents ...scribe.Node) *NodeHeading {
 	// If the level is less than 1, set it to 1
 	if level < 1 {
 		level = 1
@@ -25,11 +25,17 @@ func Heading(level int, contents ...string) *NodeHeading {
 		level = 6
 	}
 
-	// Return the heading
-	return &NodeHeading{
-		Level:    level,
-		NodeText: *scribe.Text(contents...).Join(" "),
+	// Create a new heading
+	heading := &NodeHeading{
+		Level: level,
 	}
+	heading.WithSeparator(" ")
+
+	// Append the contents to the heading
+	heading.AppendChild(contents...)
+
+	// Return the heading
+	return heading
 }
 
 // Implement the Node interface for NodeHeading
@@ -38,31 +44,31 @@ func (heading *NodeHeading) String() string {
 }
 
 // H1 is a convenience function for creating a heading of level 1.
-func H1(contents ...string) *NodeHeading {
+func H1(contents ...scribe.Node) *NodeHeading {
 	return Heading(1, contents...)
 }
 
 // H2 is a convenience function for creating a heading of level 2.
-func H2(contents ...string) *NodeHeading {
+func H2(contents ...scribe.Node) *NodeHeading {
 	return Heading(2, contents...)
 }
 
 // H3 is a convenience function for creating a heading of level 3.
-func H3(contents ...string) *NodeHeading {
+func H3(contents ...scribe.Node) *NodeHeading {
 	return Heading(3, contents...)
 }
 
 // H4 is a convenience function for creating a heading of level 4.
-func H4(contents ...string) *NodeHeading {
+func H4(contents ...scribe.Node) *NodeHeading {
 	return Heading(4, contents...)
 }
 
 // H5 is a convenience function for creating a heading of level 5.
-func H5(contents ...string) *NodeHeading {
+func H5(contents ...scribe.Node) *NodeHeading {
 	return Heading(5, contents...)
 }
 
 // H6 is a convenience function for creating a heading of level 6.
-func H6(contents ...string) *NodeHeading {
+func H6(contents ...scribe.Node) *NodeHeading {
 	return Heading(6, contents...)
 }
