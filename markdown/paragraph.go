@@ -1,6 +1,8 @@
 package markdown
 
-import "github.com/Shresht7/Scribe/scribe"
+import (
+	"github.com/Shresht7/Scribe/scribe"
+)
 
 //* PARAGRAPH *//
 
@@ -11,16 +13,8 @@ type NodeParagraph struct {
 
 // Instantiate a new paragraph with the given contents
 func Paragraph(contents ...scribe.Node) *NodeParagraph {
-	return &NodeParagraph{
-		scribe.NodeText{
-			ParentNode: scribe.ParentNode{
-				Nodes: contents,
-			},
-		},
-	}
-}
-
-// Implement the Node interface for NodeParagraph
-func (paragraph *NodeParagraph) String() string {
-	return paragraph.NodeText.String()
+	paragraph := &NodeParagraph{}
+	paragraph.WithSeparator(" ")
+	paragraph.AppendChild(contents...)
+	return paragraph
 }
