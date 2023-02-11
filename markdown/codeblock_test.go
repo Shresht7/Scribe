@@ -4,38 +4,38 @@ import "testing"
 
 func TestCodeBlock(t *testing.T) {
 
-	// Create test cases
+	// Test Cases
 	testCases := []struct {
-		description string
-		codeblock   string
-		expected    string
+		description string // Description of the test case
+		codeblock   string // The code block as a string
+		expected    string // The expected output
 	}{
 		{
-			description: "Empty code block",
+			description: "Empty",
 			codeblock:   CodeBlock("").String(),
 			expected:    "```\n\n```",
 		},
 		{
-			description: "Code block with text",
-			codeblock:   CodeBlock("Code Block Text").String(),
-			expected:    "```\nCode Block Text\n```",
+			description: "With Code",
+			codeblock:   CodeBlock("fmt.Printf(\"Number: %d\", 12)").String(),
+			expected:    "```\nfmt.Printf(\"Number: %d\", 12)\n```",
 		},
 		{
-			description: "Code block with a language",
-			codeblock:   CodeBlock("Code Block Text", "go").String(),
-			expected:    "```go\nCode Block Text\n```",
+			description: "With Code and Language",
+			codeblock:   CodeBlock("fmt.Printf(\"Number: %d\", 12)", "go").String(),
+			expected:    "```go\nfmt.Printf(\"Number: %d\", 12)\n```",
 		},
 		{
-			description: "Code block with multiple languages",
-			codeblock:   CodeBlock("Code Block Text", "go", "python").String(),
-			expected:    "```go python\nCode Block Text\n```",
+			description: "With Code and More Metadata",
+			codeblock:   CodeBlock("fmt.Printf(\"Number: %d\", 12)").WithMetadata("go", "runnable").String(),
+			expected:    "```go runnable\nfmt.Printf(\"Number: %d\", 12)\n```",
 		},
 	}
 
 	// Run test cases
 	for _, testCase := range testCases {
 		if testCase.codeblock != testCase.expected {
-			t.Errorf("Expected %s, got %s", testCase.expected, testCase.codeblock)
+			t.Errorf("Expected:\n%s\n\ngot:\n%s", testCase.expected, testCase.codeblock)
 		}
 	}
 
