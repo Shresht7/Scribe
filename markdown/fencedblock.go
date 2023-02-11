@@ -21,13 +21,13 @@ func FencedBlock(contents string) *NodeFencedBlock {
 }
 
 // Set the fence style for the fenced block
-func (n *NodeFencedBlock) SetFence(fence string) *NodeFencedBlock {
+func (n *NodeFencedBlock) WithFence(fence string) *NodeFencedBlock {
 	n.Fence = fence
 	return n
 }
 
 // Set the metadata for the fenced block
-func (n *NodeFencedBlock) WithMetadata(metadata []string) *NodeFencedBlock {
+func (n *NodeFencedBlock) WithMetadata(metadata ...string) *NodeFencedBlock {
 	n.Metadata = metadata
 	return n
 }
@@ -35,12 +35,18 @@ func (n *NodeFencedBlock) WithMetadata(metadata []string) *NodeFencedBlock {
 // Implement the Node interface for fenced blocks
 func (n *NodeFencedBlock) String() string {
 	res := []string{}
+
+	// Create the top fence line and add metadata if it exists
 	if len(n.Metadata) > 0 {
-		res = append(res, n.Fence+" "+strings.Join(n.Metadata, " "))
+		res = append(res, n.Fence+strings.Join(n.Metadata, " "))
 	} else {
 		res = append(res, n.Fence)
 	}
+
+	// Add the contents and the bottom fence line
 	res = append(res, n.Contents)
 	res = append(res, n.Fence)
+
+	// Return the fenced block as a string
 	return strings.Join(res, "\n")
 }
