@@ -27,5 +27,6 @@ func ExampleMarkdownDocument() {
 	// Output:
 	// # Markdown Document
 	//
-	// Woah this is some paragraph! This is a test document.
+	// Woah this is some paragraph!
+	// This is a test document.
 }
