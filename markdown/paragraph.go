@@ -18,3 +18,13 @@ func Paragraph(contents ...scribe.Node) *NodeParagraph {
 	paragraph.AppendChild(contents...)
 	return paragraph
 }
+
+// Write a paragraph to the document
+func (doc *MarkdownDocument) WriteParagraph(contents ...string) *MarkdownDocument {
+	paragraph := Paragraph()
+	for _, content := range contents {
+		paragraph.AppendChild(Text(content))
+	}
+	doc.AppendChild(paragraph)
+	return doc
+}
