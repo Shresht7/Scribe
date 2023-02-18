@@ -4,7 +4,7 @@ package scribe
 
 // Document is just a collection of text nodes separated by a newline.
 type Document struct {
-	NodeText
+	NodeParent
 }
 
 // Instantiate a new document

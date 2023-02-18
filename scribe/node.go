@@ -6,6 +6,7 @@ import "strings"
 
 // Node is an interface for all nodes in the AST (Abstract Syntax Tree)
 type Node interface {
+	// String() returns the string representation of the node
 	String() string
 }
 
@@ -16,21 +17,22 @@ type NodeLiteral struct {
 	Value string
 }
 
-// Implement the Node interface for NodeLiteral
+// Implement the Node interface for NodeLiteral.
+// Returns the literal string value of the node.
 func (literal *NodeLiteral) String() string {
 	return literal.Value
 }
 
-//* PARENT NODE *//
+//* NODE PARENT *//
 
-// ParentNode is a node containing other nodes
-type ParentNode struct {
+// NodeParent is a node containing other nodes
+type NodeParent struct {
 	Separator string
 	Nodes     []Node
 }
 
 // WithSeparator sets the separator for the parent node.
-func (parent *ParentNode) WithSeparator(separator string) *ParentNode {
+func (parent *NodeParent) WithSeparator(separator string) *NodeParent {
 	parent.Separator = separator
 	return parent
 }
@@ -38,7 +40,7 @@ func (parent *ParentNode) WithSeparator(separator string) *ParentNode {
 // Implement the Node interface for ParentNode.
 // This is a recursive function that will call the String() method on all child nodes.
 // The default implementation of this Node interface is very basic.
-func (parent *ParentNode) String() string {
+func (parent *NodeParent) String() string {
 	res := []string{}
 	for _, node := range parent.Nodes {
 		res = append(res, node.String())
@@ -46,8 +48,8 @@ func (parent *ParentNode) String() string {
 	return strings.Join(res, parent.Separator)
 }
 
-// AppendChild appends the given nodes to the parent node
-func (parent *ParentNode) AppendChild(nodes ...Node) *ParentNode {
+// AppendChild appends the given node to the parent node.
+func (parent *NodeParent) AppendChild(nodes ...Node) *NodeParent {
 	parent.Nodes = append(parent.Nodes, nodes...)
 	return parent
 }

@@ -7,7 +7,7 @@ package scribe
 // The default separator is a single whitespace.
 // The separator can be changed by calling the WithSeparator() method.
 type NodeText struct {
-	ParentNode
+	NodeParent
 }
 
 // Instantiate a new NodeText with the given contents
@@ -20,7 +20,7 @@ func Text(contents ...string) *NodeText {
 
 	// Return the NodeText instance
 	return &NodeText{
-		ParentNode{
+		NodeParent{
 			Separator: " ",
 			Nodes:     Nodes,
 		},
