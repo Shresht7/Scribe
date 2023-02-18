@@ -1,6 +1,7 @@
 package scribe
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -66,4 +67,14 @@ func TestText(t *testing.T) {
 		})
 	}
 
+}
+
+func ExampleText() {
+	// Create a new text node
+	text := Text("Hello,", "world!")
+
+	// Print the string representation of the node
+	fmt.Println(text)
+
+	// Output: Hello, world!
 }
