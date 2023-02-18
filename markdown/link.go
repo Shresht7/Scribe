@@ -4,7 +4,7 @@ import "github.com/Shresht7/Scribe/scribe"
 
 //* LINK *//
 
-// Link is a link.
+// NodeLink represents a link in Markdown
 type NodeLink struct {
 	URL   string
 	Title string

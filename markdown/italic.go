@@ -4,7 +4,7 @@ import "github.com/Shresht7/Scribe/scribe"
 
 //* ITALIC *//
 
-// Italic represents italicized text.
+// Italic represents italicized text in Markdown.
 type NodeItalic struct {
 	scribe.NodeText
 }

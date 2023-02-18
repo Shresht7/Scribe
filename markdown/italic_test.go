@@ -1,9 +1,8 @@
 package markdown
 
 import (
+	"fmt"
 	"testing"
-
-	"github.com/Shresht7/Scribe/scribe"
 )
 
 func TestItalic(t *testing.T) {
@@ -16,23 +15,23 @@ func TestItalic(t *testing.T) {
 	}{
 		{
 			description: "Empty italic",
-			italic:      Italic(scribe.Text("")).String(),
+			italic:      Italic(Text("")).String(),
 			expected:    "**",
 		},
 		{
 			description: "Italic with text",
-			italic:      Italic(scribe.Text("Italic Text")).String(),
+			italic:      Italic(Text("Italic Text")).String(),
 			expected:    "*Italic Text*",
 		},
 		{
 			description: "Italic with multiple text nodes",
-			italic:      Italic(scribe.Text("Italic"), scribe.Text("Text")).String(),
+			italic:      Italic(Text("Italic"), Text("Text")).String(),
 			expected:    "*Italic Text*",
 		},
 		{
 			description: "Italic with multiple text nodes and a separator",
 			italic: func() string {
-				i := Italic(scribe.Text("Italic"), scribe.Text("Text"))
+				i := Italic(Text("Italic"), Text("Text"))
 				i.WithSeparator(" ")
 				return i.String()
 			}(),
@@ -47,4 +46,12 @@ func TestItalic(t *testing.T) {
 		}
 	}
 
+}
+
+func ExampleItalic() {
+	// Create an italic
+	italic := Italic(Text("Italic Text"))
+	// Print the italic
+	fmt.Println(italic)
+	// Output: *Italic Text*
 }

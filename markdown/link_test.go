@@ -1,6 +1,9 @@
 package markdown
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestLink(t *testing.T) {
 
@@ -39,4 +42,12 @@ func TestLink(t *testing.T) {
 		}
 	}
 
+}
+
+func ExampleLink() {
+	// Create a link
+	link := Link("Title", "URL")
+	// Print the link
+	fmt.Println(link)
+	// Output: [Title](URL)
 }

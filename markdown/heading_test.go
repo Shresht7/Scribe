@@ -1,9 +1,8 @@
 package markdown
 
 import (
+	"fmt"
 	"testing"
-
-	"github.com/Shresht7/Scribe/scribe"
 )
 
 func TestHeading(t *testing.T) {
@@ -16,54 +15,54 @@ func TestHeading(t *testing.T) {
 	}{
 		{
 			description: "Empty heading",
-			heading:     Heading(1, scribe.Text("")).String(),
+			heading:     Heading(1, Text("")).String(),
 			expected:    "# ",
 		},
 		{
 			description: "Heading with text",
-			heading:     Heading(1, scribe.Text("Heading Level One")).String(),
+			heading:     Heading(1, Text("Heading Level One")).String(),
 			expected:    "# Heading Level One",
 		},
 		{
 			description: "Second level heading with text",
-			heading:     Heading(2, scribe.Text("Heading Level Two")).String(),
+			heading:     Heading(2, Text("Heading Level Two")).String(),
 			expected:    "## Heading Level Two",
 		},
 		{
 			description: "Third level heading with text",
-			heading:     Heading(3, scribe.Text("Heading Level Three")).String(),
+			heading:     Heading(3, Text("Heading Level Three")).String(),
 			expected:    "### Heading Level Three",
 		},
 		{
 			description: "Fourth level heading with text",
-			heading:     Heading(4, scribe.Text("Heading Level Four")).String(),
+			heading:     Heading(4, Text("Heading Level Four")).String(),
 			expected:    "#### Heading Level Four",
 		},
 		{
 			description: "Fifth level heading with text",
-			heading:     Heading(5, scribe.Text("Heading Level Five")).String(),
+			heading:     Heading(5, Text("Heading Level Five")).String(),
 			expected:    "##### Heading Level Five",
 		},
 		{
 			description: "Sixth level heading with text",
-			heading:     Heading(6, scribe.Text("Heading Level Six")).String(),
+			heading:     Heading(6, Text("Heading Level Six")).String(),
 			expected:    "###### Heading Level Six",
 		},
 		{
 			description: "Should not render a heading with a level greater than 6",
-			heading:     Heading(7, scribe.Text("No such thing as a Heading Level Seven")).String(),
+			heading:     Heading(7, Text("No such thing as a Heading Level Seven")).String(),
 			expected:    "###### No such thing as a Heading Level Seven",
 		},
 		{
 			description: "Should not render a heading with a level less than 1",
-			heading:     Heading(0, scribe.Text("No such thing as a Heading Level Zero")).String(),
+			heading:     Heading(0, Text("No such thing as a Heading Level Zero")).String(),
 			expected:    "# No such thing as a Heading Level Zero",
 		},
 		{
 			description: "Heading with multiple text nodes",
 			heading: Heading(1,
-				scribe.Text("This is sentence one."),
-				scribe.Text("This is sentence two."),
+				Text("This is sentence one."),
+				Text("This is sentence two."),
 			).String(),
 			expected: "# This is sentence one. This is sentence two.",
 		},
@@ -71,8 +70,8 @@ func TestHeading(t *testing.T) {
 			description: "Heading with multiple text nodes and a separator",
 			heading: func() string {
 				h := Heading(1,
-					scribe.Text("This is sentence one."),
-					scribe.Text("This is sentence two."),
+					Text("This is sentence one."),
+					Text("This is sentence two."),
 				)
 				h.WithSeparator("\t")
 				return h.String()
@@ -82,9 +81,9 @@ func TestHeading(t *testing.T) {
 		{
 			description: "Heading with text and inline elements",
 			heading: Heading(1,
-				Bold(scribe.Text("This is some bold text")),
-				scribe.Text("This is a test heading."),
-				scribe.Text("This is some random text"),
+				Bold(Text("This is some bold text")),
+				Text("This is a test heading."),
+				Text("This is some random text"),
 			).String(),
 			expected: "# **This is some bold text** This is a test heading. This is some random text",
 		},
@@ -98,4 +97,26 @@ func TestHeading(t *testing.T) {
 		}
 	}
 
+}
+
+func ExampleHeading() {
+	// Create a new heading
+	heading := Heading(1, Text("This is a test heading."))
+
+	// Print the heading
+	fmt.Println(heading)
+
+	// Output:
+	// # This is a test heading.
+}
+
+func ExampleH2() {
+	// Create a new heading
+	heading := H2(Text("This is a test heading."))
+
+	// Print the heading
+	fmt.Println(heading)
+
+	// Output:
+	// ## This is a test heading.
 }

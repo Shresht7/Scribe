@@ -1,9 +1,8 @@
 package markdown
 
 import (
+	"fmt"
 	"testing"
-
-	"github.com/Shresht7/Scribe/scribe"
 )
 
 func TestDetails(t *testing.T) {
@@ -16,7 +15,7 @@ func TestDetails(t *testing.T) {
 	}{
 		{
 			description: "Simple Details",
-			details:     Details("description", scribe.Text("This is a simple details block")).String(),
+			details:     Details("description", Text("This is a simple details block")).String(),
 			expected:    "<details>\n\n<summary>description</summary>\n\nThis is a simple details block\n\n</details>",
 		},
 	}
@@ -28,4 +27,21 @@ func TestDetails(t *testing.T) {
 		}
 	}
 
+}
+
+func ExampleDetails() {
+	// Create a new details block
+	details := Details("description", Text("This is a simple details block"))
+
+	// Print the details block
+	fmt.Println(details)
+
+	// Output:
+	// <details>
+	//
+	// <summary>description</summary>
+	//
+	// This is a simple details block
+	//
+	// </details>
 }

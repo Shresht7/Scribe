@@ -8,7 +8,7 @@ import (
 
 //* HEADING *//
 
-// NodeHeading represents a heading.
+// NodeHeading represents a heading in a markdown document.
 type NodeHeading struct {
 	Level int
 	scribe.NodeText

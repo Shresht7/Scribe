@@ -1,9 +1,8 @@
 package markdown
 
 import (
+	"fmt"
 	"testing"
-
-	"github.com/Shresht7/Scribe/scribe"
 )
 
 func TestCode(t *testing.T) {
@@ -16,23 +15,23 @@ func TestCode(t *testing.T) {
 	}{
 		{
 			description: "Empty code",
-			code:        Code(scribe.Text("")).String(),
+			code:        Code(Text("")).String(),
 			expected:    "``",
 		},
 		{
 			description: "Code with text",
-			code:        Code(scribe.Text("Code Text")).String(),
+			code:        Code(Text("Code Text")).String(),
 			expected:    "`Code Text`",
 		},
 		{
 			description: "Code with multiple text nodes",
-			code:        Code(scribe.Text("Code"), scribe.Text("Text")).String(),
+			code:        Code(Text("Code"), Text("Text")).String(),
 			expected:    "`Code Text`",
 		},
 		{
 			description: "Code with multiple text nodes and a separator",
 			code: func() string {
-				c := Code(scribe.Text("Code"), scribe.Text("Text"))
+				c := Code(Text("Code"), Text("Text"))
 				c.WithSeparator(" ")
 				return c.String()
 			}(),
@@ -47,4 +46,15 @@ func TestCode(t *testing.T) {
 		}
 	}
 
+}
+
+func ExampleCode() {
+	// Create a new code text
+	code := Code(Text("Code Text"))
+
+	// Print the code text
+	fmt.Println(code)
+
+	// Output:
+	// `Code Text`
 }

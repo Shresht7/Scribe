@@ -4,12 +4,12 @@ import "github.com/Shresht7/Scribe/scribe"
 
 //* BOLD *//
 
-// Bold is a bold text.
+// NodeBold represents bold text in Markdown.
 type NodeBold struct {
 	scribe.NodeText
 }
 
-// Instantiate a new bold text with the given contents
+// Instantiate new bold text with the given contents
 func Bold(contents ...scribe.Node) *NodeBold {
 	// Create a new bold text
 	bold := &NodeBold{}

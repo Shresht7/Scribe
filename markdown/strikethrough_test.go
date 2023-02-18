@@ -1,9 +1,8 @@
 package markdown
 
 import (
+	"fmt"
 	"testing"
-
-	"github.com/Shresht7/Scribe/scribe"
 )
 
 func TestStrikeThrough(t *testing.T) {
@@ -16,23 +15,23 @@ func TestStrikeThrough(t *testing.T) {
 	}{
 		{
 			name:          "Empty",
-			strikethrough: StrikeThrough(scribe.Text("")).String(),
+			strikethrough: StrikeThrough(Text("")).String(),
 			expected:      "~~~~",
 		},
 		{
 			name:          "Single",
-			strikethrough: StrikeThrough(scribe.Text("Hello")).String(),
+			strikethrough: StrikeThrough(Text("Hello")).String(),
 			expected:      "~~Hello~~",
 		},
 		{
 			name:          "Multiple",
-			strikethrough: StrikeThrough(scribe.Text("Hello"), scribe.Text("World")).String(),
+			strikethrough: StrikeThrough(Text("Hello"), Text("World")).String(),
 			expected:      "~~Hello World~~",
 		},
 		{
 			name: "Multiple with separator",
 			strikethrough: func() string {
-				s := StrikeThrough(scribe.Text("Hello"), scribe.Text("World"))
+				s := StrikeThrough(Text("Hello"), Text("World"))
 				s.WithSeparator("_")
 				return s.String()
 			}(),
@@ -47,4 +46,12 @@ func TestStrikeThrough(t *testing.T) {
 		}
 	}
 
+}
+
+func ExampleStrikeThrough() {
+	// Create a strikethrough
+	strikethrough := StrikeThrough(Text("Hello"))
+	// Print the strikethrough
+	fmt.Println(strikethrough)
+	// Output: ~~Hello~~
 }

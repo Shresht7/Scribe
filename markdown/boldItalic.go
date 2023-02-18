@@ -4,7 +4,7 @@ import "github.com/Shresht7/Scribe/scribe"
 
 //* BOLD ITALIC *//
 
-// NodeBoldItalic represents bold italicized text.
+// NodeBoldItalic represents bold and italicized text.
 type NodeBoldItalic struct {
 	scribe.NodeText
 }

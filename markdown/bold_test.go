@@ -1,9 +1,8 @@
 package markdown
 
 import (
+	"fmt"
 	"testing"
-
-	"github.com/Shresht7/Scribe/scribe"
 )
 
 func TestBold(t *testing.T) {
@@ -16,23 +15,23 @@ func TestBold(t *testing.T) {
 	}{
 		{
 			description: "Empty bold",
-			bold:        Bold(scribe.Text("")).String(),
+			bold:        Bold(Text("")).String(),
 			expected:    "****",
 		},
 		{
 			description: "Bold with text",
-			bold:        Bold(scribe.Text("Bold Text")).String(),
+			bold:        Bold(Text("Bold Text")).String(),
 			expected:    "**Bold Text**",
 		},
 		{
 			description: "Bold with multiple text nodes",
-			bold:        Bold(scribe.Text("Bold"), scribe.Text("Text")).String(),
+			bold:        Bold(Text("Bold"), Text("Text")).String(),
 			expected:    "**Bold Text**",
 		},
 		{
 			description: "Bold with multiple text nodes and a separator",
 			bold: func() string {
-				b := Bold(scribe.Text("Bold"), scribe.Text("Text"))
+				b := Bold(Text("Bold"), Text("Text"))
 				b.WithSeparator(" ")
 				return b.String()
 			}(),
@@ -47,4 +46,30 @@ func TestBold(t *testing.T) {
 		}
 	}
 
+}
+
+func ExampleBold() {
+	// Create a new bold text
+	bold := Bold(Text("Bold Text"))
+
+	// Print the bold text
+	fmt.Println(bold)
+
+	// Output:
+	// **Bold Text**
+}
+
+func ExampleBold_code() {
+	// Create a new bold text
+	bold := Bold(
+		Code(
+			Text("Bold Text"),
+		),
+	)
+
+	// Print the bold text
+	fmt.Println(bold)
+
+	// Output:
+	// **`Bold Text`**
 }

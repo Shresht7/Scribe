@@ -4,7 +4,7 @@ import "github.com/Shresht7/Scribe/scribe"
 
 //* CODE *//
 
-// Code represents inline code text.
+// Code represents inline code text in Markdown.
 type NodeCode struct {
 	scribe.NodeText
 }

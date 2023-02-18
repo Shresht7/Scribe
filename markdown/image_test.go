@@ -1,6 +1,9 @@
 package markdown
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestImage(t *testing.T) {
 
@@ -39,4 +42,12 @@ func TestImage(t *testing.T) {
 		}
 	}
 
+}
+
+func ExampleImage() {
+	// Create an image
+	image := Image("Alt", "URL")
+	// Print the image
+	fmt.Println(image)
+	// Output: ![Alt](URL)
 }

@@ -1,6 +1,9 @@
 package markdown
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestHorizontalRule(t *testing.T) {
 
@@ -59,4 +62,19 @@ func TestHorizontalRule(t *testing.T) {
 		}
 	}
 
+}
+
+func ExampleHorizontalRule() {
+	md := Paragraph()
+
+	md.AppendChild(Text("This is a paragraph with a horizontal rule below it."))
+	md.AppendChild(HorizontalRule('-', 3))
+	md.AppendChild(Text("This is a paragraph with a horizontal rule above it."))
+
+	fmt.Println(md)
+
+	// Output:
+	// This is a paragraph with a horizontal rule below it.
+	// ---
+	// This is a paragraph with a horizontal rule above it.
 }

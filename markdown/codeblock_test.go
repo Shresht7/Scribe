@@ -1,6 +1,9 @@
 package markdown
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestCodeBlock(t *testing.T) {
 
@@ -39,4 +42,17 @@ func TestCodeBlock(t *testing.T) {
 		}
 	}
 
+}
+
+func ExampleCodeBlock() {
+	// Create a new code block
+	codeblock := CodeBlock("fmt.Printf(\"Number: %d\", 12)", "go")
+
+	// Print the code block
+	fmt.Println(codeblock)
+
+	// Output:
+	// ```go
+	// fmt.Printf("Number: %d", 12)
+	// ```
 }

@@ -1,6 +1,9 @@
 package markdown
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestFencedBlock(t *testing.T) {
 
@@ -64,4 +67,17 @@ func TestFencedBlock(t *testing.T) {
 		}
 	}
 
+}
+
+func ExampleFencedBlock() {
+	// Create a fenced block with content
+	fencedBlock := FencedBlock("Content")
+
+	// Output the fenced block
+	fmt.Println(fencedBlock)
+
+	// Output:
+	// ---
+	// Content
+	// ---
 }
