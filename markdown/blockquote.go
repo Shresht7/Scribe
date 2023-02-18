@@ -1,10 +1,14 @@
 package markdown
 
-import "github.com/Shresht7/Scribe/scribe"
+import (
+	"strings"
+
+	"github.com/Shresht7/Scribe/scribe"
+)
 
 //* BLOCKQUOTE *//
 
-// NodeBlockQuote represents a blockquote.
+// NodeBlockQuote represents a blockquote in Markdown.
 type NodeBlockQuote struct {
 	scribe.NodeText
 }
@@ -13,7 +17,7 @@ type NodeBlockQuote struct {
 func BlockQuote(contents ...scribe.Node) *NodeBlockQuote {
 	// Create a new blockquote
 	blockquote := &NodeBlockQuote{}
-	blockquote.WithSeparator(" ")
+	blockquote.WithSeparator("\n")
 
 	// Append the contents to the blockquote
 	blockquote.AppendChild(contents...)
@@ -24,5 +28,9 @@ func BlockQuote(contents ...scribe.Node) *NodeBlockQuote {
 
 // Implement the Node interface for NodeBlockQuote
 func (blockquote *NodeBlockQuote) String() string {
-	return "> " + blockquote.NodeText.String()
+	res := []string{}
+	for _, node := range blockquote.Nodes {
+		res = append(res, "> "+node.String())
+	}
+	return strings.Join(res, blockquote.Separator)
 }
