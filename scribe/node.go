@@ -17,6 +17,11 @@ type NodeLiteral struct {
 	Value string
 }
 
+// Literal creates a new NodeLiteral with the given value
+func Literal(value string) *NodeLiteral {
+	return &NodeLiteral{Value: value}
+}
+
 // Implement the Node interface for NodeLiteral.
 // Returns the literal string value of the node.
 func (literal *NodeLiteral) String() string {
@@ -29,6 +34,14 @@ func (literal *NodeLiteral) String() string {
 type NodeParent struct {
 	Separator string
 	Nodes     []Node
+}
+
+// Container creates a new NodeParent with the given nodes
+func Container(nodes ...Node) *NodeParent {
+	return &NodeParent{
+		Separator: "",
+		Nodes:     nodes,
+	}
 }
 
 // WithSeparator sets the separator for the parent node.
