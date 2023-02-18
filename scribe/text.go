@@ -26,3 +26,9 @@ func Text(contents ...string) *NodeText {
 		},
 	}
 }
+
+// Write a text node to the document
+func (doc *Document) WriteText(contents ...string) *Document {
+	doc.AppendChild(Text(contents...))
+	return doc
+}
