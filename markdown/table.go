@@ -1,6 +1,10 @@
 package markdown
 
-import "strings"
+import (
+	"strings"
+
+	"github.com/Shresht7/Scribe/helpers"
+)
 
 // * NodeTable *//
 
@@ -20,21 +24,50 @@ func Table(header []string, rows [][]string) *NodeTable {
 	}
 }
 
+// Render the table header
+func (n *NodeTable) renderHeader(widths []int) string {
+	res := []string{}
+	for i, header := range n.Header {
+		res = append(res, header+strings.Repeat(" ", widths[i]-len(header)))
+	}
+	return "| " + strings.Join(res, " | ") + " |"
+}
+
+// Render the table divider
+func (n *NodeTable) renderDivider(widths []int) string {
+	res := []string{}
+	for i := range n.Header {
+		res = append(res, strings.Repeat("-", widths[i]))
+	}
+	return "| " + strings.Join(res, " | ") + " |"
+}
+
+// Render a table row
+func (n *NodeTable) renderRow(row []string, widths []int) string {
+	res := []string{}
+	for i, cell := range row {
+		res = append(res, cell+strings.Repeat(" ", widths[i]-len(cell)))
+	}
+	return "| " + strings.Join(res, " | ") + " |"
+}
+
+// Render the table
 func (n *NodeTable) String() string {
 	res := []string{}
-	// Create the header row
-	res = append(res, "| "+strings.Join(n.Header, " | ")+" |")
 
-	// Create the header divider
-	dividers := []string{}
-	for range n.Header {
-		dividers = append(dividers, "---")
-	}
-	res = append(res, "| "+strings.Join(dividers, " | ")+" |")
+	// Determine the max width of each column
+	table := append([][]string{n.Header}, n.Rows...)
+	widths := helpers.DetermineWidths(table)
 
-	// Create the rows
+	// Render the header
+	res = append(res, n.renderHeader(widths))
+
+	// Render the divider
+	res = append(res, n.renderDivider(widths))
+
+	// Render the rows
 	for _, row := range n.Rows {
-		res = append(res, "| "+strings.Join(row, " | ")+" |")
+		res = append(res, n.renderRow(row, widths))
 	}
 
 	// Return the table as a string
