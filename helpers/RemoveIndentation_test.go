@@ -70,8 +70,8 @@ func TestRemoveIndentation(t *testing.T) {
 
 }
 
-// equal returns true if the given slices are equal.
-func equal(a, b []string) bool {
+// equal compares two slices of comparable types and returns true if they are equal
+func equal[T comparable](a, b []T) bool {
 	// Return false if slices have different length
 	if len(a) != len(b) {
 		return false
@@ -82,6 +82,6 @@ func equal(a, b []string) bool {
 			return false
 		}
 	}
-	// Return true otherwise
+	// Return true if slices are equal
 	return true
 }
