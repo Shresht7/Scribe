@@ -12,34 +12,52 @@ func TestRenderHeader(t *testing.T) {
 	// Test Cases
 	testCases := []struct {
 		Header []string
-		Widths []int
+		Rows   [][]string
+		Align  map[int]string
 		Result string
 	}{
 		{
 			Header: []string{"Name", "Age"},
-			Widths: []int{5, 3},
+			Rows: [][]string{
+				{"Alice", "20"},
+				{"Bob", "30"},
+			},
 			Result: "| Name  | Age |",
 		},
 		{
-			Header: []string{"Name", "Age"},
-			Widths: []int{7, 3},
-			Result: "| Name    | Age |",
+			Header: []string{"Name", "Age", "Height", "Weight"},
+			Rows: [][]string{
+				{"Alice", "20", "5'6", "120"},
+				{"Bob", "30", "5'10", "150"},
+			},
+			Result: "| Name  | Age | Height | Weight |",
 		},
 		{
 			Header: []string{"Name", "Age", "Height", "Weight"},
-			Widths: []int{7, 3, 6, 6},
-			Result: "| Name    | Age | Height | Weight |",
+			Rows: [][]string{
+				{"Alice", "20", "5'6", "120"},
+				{"Bob", "30", "5'10", "150"},
+				{"Charlie", "40", "6'0", "180"},
+				{"David", "50", "6'2", "200"},
+				{"Eve", "60", "6'4", "220"},
+			},
+			Align: map[int]string{
+				0: "right",
+			},
+			Result: "|    Name | Age | Height | Weight |",
 		},
 	}
 
 	// Run Test Cases
 	for _, testCase := range testCases {
-		table := Table(testCase.Header, [][]string{})
-		header := table.renderHeader(testCase.Widths)
+		table := Table(testCase.Header, testCase.Rows)
+		table.Align = testCase.Align
+		header := table.renderHeader()
 		if header != testCase.Result {
 			t.Errorf("want:\n%v\n\ngot:\n%v", testCase.Result, header)
 		}
 	}
+
 }
 
 func TestRenderDivider(t *testing.T) {
@@ -47,30 +65,50 @@ func TestRenderDivider(t *testing.T) {
 	// Test Cases
 	testCases := []struct {
 		Header []string
-		Widths []int
+		Rows   [][]string
+		Align  map[int]string
 		Result string
 	}{
 		{
 			Header: []string{"Name", "Age"},
-			Widths: []int{5, 3},
+			Rows: [][]string{
+				{"Alice", "20"},
+				{"Bob", "30"},
+			},
 			Result: "| ----- | --- |",
 		},
 		{
 			Header: []string{"Name", "Age"},
-			Widths: []int{7, 3},
-			Result: "| ------- | --- |",
+			Rows: [][]string{
+				{"Alice", "20"},
+				{"Bob", "30"},
+			},
+			Align: map[int]string{
+				0: "center",
+				1: "right",
+			},
+			Result: "| :---: | --: |",
 		},
 		{
 			Header: []string{"Name", "Age", "Height", "Weight"},
-			Widths: []int{7, 3, 6, 6},
-			Result: "| ------- | --- | ------ | ------ |",
+			Rows: [][]string{
+				{"Alice", "20", "5'6", "120"},
+				{"Bob", "30", "5'10", "150"},
+			},
+			Align: map[int]string{
+				0: "center",
+				1: "right",
+				2: "left",
+			},
+			Result: "| :---: | --: | :----- | ------ |",
 		},
 	}
 
 	// Run Test Cases
 	for _, testCase := range testCases {
-		table := Table(testCase.Header, [][]string{})
-		divider := table.renderDivider(testCase.Widths)
+		table := Table(testCase.Header, testCase.Rows)
+		table.Align = testCase.Align
+		divider := table.renderDivider()
 		if divider != testCase.Result {
 			t.Errorf("want:\n%v\n\ngot:\n%v", testCase.Result, divider)
 		}
@@ -82,38 +120,64 @@ func TestRenderRow(t *testing.T) {
 	// Test Cases
 	testCases := []struct {
 		Header []string
-		Widths []int
-		Row    []string
+		Rows   [][]string
+		Align  map[int]string
 		Result string
 	}{
 		{
 			Header: []string{"Name", "Age"},
-			Widths: []int{5, 3},
-			Row:    []string{"Alice", "20"},
-			Result: "| Alice | 20  |",
-		},
-		{
-			Header: []string{"Name", "Age"},
-			Widths: []int{7, 3},
-			Row:    []string{"Alice", "20"},
-			Result: "| Alice   | 20  |",
+			Rows: [][]string{
+				{"Alice", "20"},
+				{"Bob", "30"},
+			},
+			Result: helpers.HereDoc(`
+				| Alice | 20  |
+				| Bob   | 30  |
+			`),
 		},
 		{
 			Header: []string{"Name", "Age", "Height", "Weight"},
-			Widths: []int{7, 3, 6, 6},
-			Row:    []string{"Alice", "20", "5'6", "120"},
-			Result: "| Alice   | 20  | 5'6    | 120    |",
+			Rows: [][]string{
+				{"Alice", "20", "5'6", "120"},
+				{"Bob", "30", "5'10", "150"},
+			},
+			Result: helpers.HereDoc(`
+				| Alice | 20  | 5'6    | 120    |
+				| Bob   | 30  | 5'10   | 150    |
+			`),
+		},
+		{
+			Header: []string{"Name", "Age", "Height", "Weight"},
+			Rows: [][]string{
+				{"Alice", "20", "5'6", "120"},
+				{"Bob", "30", "5'10", "150"},
+				{"Charlie", "40", "6'0", "180"},
+				{"David", "50", "6'2", "200"},
+				{"Eve", "60", "6'4", "220"},
+			},
+			Align: map[int]string{
+				0: "right",
+			},
+			Result: helpers.HereDoc(`
+				|   Alice | 20  | 5'6    | 120    |
+				|     Bob | 30  | 5'10   | 150    |
+				| Charlie | 40  | 6'0    | 180    |
+				|   David | 50  | 6'2    | 200    |
+				|     Eve | 60  | 6'4    | 220    |
+			`),
 		},
 	}
 
 	// Run Test Cases
 	for _, testCase := range testCases {
-		table := Table(testCase.Header, [][]string{})
-		row := table.renderRow(testCase.Row, testCase.Widths)
-		if row != testCase.Result {
-			t.Errorf("want:\n%v\n\ngot:\n%v", testCase.Result, row)
+		table := Table(testCase.Header, testCase.Rows)
+		table.Align = testCase.Align
+		rows := table.renderRows()
+		if rows != testCase.Result {
+			t.Errorf("want:\n%v\n\ngot:\n%v", testCase.Result, rows)
 		}
 	}
+
 }
 
 func TestTable(t *testing.T) {
