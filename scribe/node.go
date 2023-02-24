@@ -4,7 +4,9 @@ import "strings"
 
 //* NODE INTERFACE *//
 
-// Node is an interface for all nodes in the AST (Abstract Syntax Tree)
+// Node is an interface for all nodes in the AST (Abstract Syntax Tree).
+// The only requirement is that the Node can be converted to the desired string
+// using the String() method (i.e. it implements the Stringer interface).
 type Node interface {
 	// String() returns the string representation of the node
 	String() string
@@ -12,17 +14,18 @@ type Node interface {
 
 //* NODE LITERAL *//
 
-// NodeLiteral is a node containing a literal value
+// NodeLiteral is a node containing a literal value. It is the most
+// basic implementation of the Node interface (Leaf Node).
 type NodeLiteral struct {
 	Value string
 }
 
-// Literal creates a new NodeLiteral with the given value
+// Literal creates a new NodeLiteral with the given string
 func Literal(value string) *NodeLiteral {
 	return &NodeLiteral{Value: value}
 }
 
-// Implement the Node interface for NodeLiteral.
+// Implements the Node interface for NodeLiteral.
 // Returns the literal string value of the node.
 func (literal *NodeLiteral) String() string {
 	return literal.Value
@@ -30,7 +33,8 @@ func (literal *NodeLiteral) String() string {
 
 //* NODE PARENT *//
 
-// NodeParent is a node containing other nodes
+// NodeParent is a node containing other nodes. When rendered as a string,
+// the child nodes are separated by the Separator string.
 type NodeParent struct {
 	Separator string
 	Nodes     []Node
@@ -44,7 +48,7 @@ func Container(nodes ...Node) *NodeParent {
 	}
 }
 
-// WithSeparator sets the separator for the parent node.
+// WithSeparator sets the separator for the parent node
 func (parent *NodeParent) WithSeparator(separator string) *NodeParent {
 	parent.Separator = separator
 	return parent
