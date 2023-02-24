@@ -3,9 +3,8 @@ package scribe
 //* NODE TEXT *//
 
 // NodeText is a node containing text.
-// It is a special type of ParentNode that joins the child nodes with a separator.
-// The default separator is a single whitespace.
-// The separator can be changed by calling the WithSeparator() method.
+// It is a special type of ParentNode that joins the child nodes
+// with a single whitespace separator.
 type NodeText struct {
 	NodeParent
 }
@@ -15,7 +14,7 @@ func Text(contents ...string) *NodeText {
 	// Generate a slice of NodeLiteral from the given contents
 	Nodes := []Node{}
 	for _, content := range contents {
-		Nodes = append(Nodes, &NodeLiteral{Value: content})
+		Nodes = append(Nodes, &NodeLiteral{content})
 	}
 
 	// Return the NodeText instance
