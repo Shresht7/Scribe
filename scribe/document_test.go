@@ -5,6 +5,8 @@ import (
 	"testing"
 )
 
+//* DOCUMENT *//
+
 func TestDocument(t *testing.T) {
 
 	// Test Cases
@@ -31,6 +33,30 @@ func TestDocument(t *testing.T) {
 			},
 			want: "Hello\nWorld",
 		},
+		{
+			description: "Document with nested Nodes",
+			document: &Document{
+				NodeParent: NodeParent{
+					Separator: "\n",
+					Nodes: []Node{
+						&NodeLiteral{"One"},
+						&NodeParent{
+							Separator: "-",
+							Nodes: []Node{
+								Literal("Two"),
+								Literal("Three"),
+								Literal("Four"),
+							},
+						},
+						Container(
+							Literal("Five"),
+							Literal("Six"),
+						).WithSeparator("|"),
+					},
+				},
+			},
+			want: "One\nTwo-Three-Four\nFive|Six",
+		},
 	}
 
 	// Run Test Cases
@@ -38,7 +64,7 @@ func TestDocument(t *testing.T) {
 		t.Run(testCase.description, func(t *testing.T) {
 			got := testCase.document.String()
 			if got != testCase.want {
-				t.Errorf("got %q, want %q", got, testCase.want)
+				t.Errorf("%s: got %q, want %q", testCase.description, got, testCase.want)
 			}
 		})
 	}
@@ -46,6 +72,7 @@ func TestDocument(t *testing.T) {
 }
 
 func ExampleDocument() {
+
 	// Create a new Document
 	document := NewDocument()
 	document.WithSeparator("\n")
@@ -62,4 +89,5 @@ func ExampleDocument() {
 	// Output:
 	// Hello World
 	// This is a test document
+
 }
