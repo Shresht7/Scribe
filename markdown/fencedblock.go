@@ -50,3 +50,9 @@ func (n *NodeFencedBlock) String() string {
 	// Return the fenced block as a string
 	return strings.Join(res, "\n")
 }
+
+// Write a fenced block to the document
+func (doc *MarkdownDocument) WriteFencedBlock(contents string) *MarkdownDocument {
+	doc.AppendChild(FencedBlock(contents))
+	return doc
+}

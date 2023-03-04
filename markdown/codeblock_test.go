@@ -35,7 +35,7 @@ func TestCodeBlock(t *testing.T) {
 		},
 	}
 
-	// Run test cases
+	// Run Test Cases
 	for _, testCase := range testCases {
 		if testCase.codeblock != testCase.expected {
 			t.Errorf("Expected:\n%s\n\ngot:\n%s", testCase.expected, testCase.codeblock)

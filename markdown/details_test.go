@@ -20,7 +20,7 @@ func TestDetails(t *testing.T) {
 		},
 	}
 
-	// Run the test cases
+	// Run Test Cases
 	for _, c := range cases {
 		if c.details != c.expected {
 			t.Errorf("TestDetails(%s): expected %s, got %s", c.description, c.expected, c.details)

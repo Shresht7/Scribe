@@ -7,7 +7,7 @@ import (
 
 func TestHeading(t *testing.T) {
 
-	// Create test cases
+	// Test Cases
 	testCases := []struct {
 		description string
 		heading     string
@@ -89,7 +89,7 @@ func TestHeading(t *testing.T) {
 		},
 	}
 
-	// Run the test cases
+	// Run Test Cases
 	for _, testCase := range testCases {
 		// Compare the actual and expected results
 		if testCase.heading != testCase.expected {

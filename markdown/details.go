@@ -45,3 +45,9 @@ func (n *NodeDetails) String() string {
 	// Return the details block as a string
 	return strings.Join(res, "\n")
 }
+
+// Write the details block to the document
+func (doc *MarkdownDocument) WriteDetails(summary string, contents ...scribe.Node) *MarkdownDocument {
+	doc.AppendChild(Details(summary, contents...))
+	return doc
+}

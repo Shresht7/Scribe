@@ -7,7 +7,7 @@ import (
 
 func TestBlockQuote(t *testing.T) {
 
-	// Create test cases
+	// Test Cases
 	testCases := []struct {
 		description string
 		blockquote  string
@@ -39,7 +39,7 @@ func TestBlockQuote(t *testing.T) {
 		},
 	}
 
-	// Run test cases
+	// Run Test Cases
 	for _, testCase := range testCases {
 		if testCase.blockquote != testCase.expected {
 			t.Errorf("Expected:\n%s\ngot:\n%s", testCase.expected, testCase.blockquote)

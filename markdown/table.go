@@ -117,3 +117,9 @@ func (n *NodeTable) String() string {
 	// Return the table as a string
 	return strings.Join(res, "\n")
 }
+
+// Write Table to the document
+func (doc *MarkdownDocument) WriteTable(header []string, rows [][]string) *MarkdownDocument {
+	doc.AppendChild(Table(header, rows))
+	return doc
+}
