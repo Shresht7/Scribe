@@ -62,3 +62,33 @@ func (list *NodeList) String() string {
 	// Return the string
 	return builder.String()
 }
+
+// Write an unordered list to the document
+func (doc *MarkdownDocument) WriteUnorderedList(items []string) *MarkdownDocument {
+	// Create a new list
+	list := UnorderedList("*", []scribe.Node{})
+	for _, item := range items {
+		list.Items = append(list.Items, scribe.Text(item))
+	}
+
+	// Add the list to the document
+	doc.AppendChild(list)
+
+	// Return the document
+	return doc
+}
+
+// Write an ordered list to the document
+func (doc *MarkdownDocument) WriteOrderedList(items []string) *MarkdownDocument {
+	// Create a new list
+	list := OrderedList([]scribe.Node{})
+	for _, item := range items {
+		list.Items = append(list.Items, scribe.Text(item))
+	}
+
+	// Add the list to the document
+	doc.AppendChild(list)
+
+	// Return the document
+	return doc
+}

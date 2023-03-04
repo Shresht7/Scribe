@@ -15,3 +15,9 @@ func FrontMatter(kind, contents string) *NodeFrontMatter {
 		Kind:            kind,
 	}
 }
+
+// Write a frontmatter block to the document
+func (doc *MarkdownDocument) WriteFrontMatter(kind, contents string) *MarkdownDocument {
+	doc.AppendChild(FrontMatter(kind, contents))
+	return doc
+}

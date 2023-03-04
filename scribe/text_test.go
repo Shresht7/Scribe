@@ -5,9 +5,11 @@ import (
 	"testing"
 )
 
+//* NODE TEXT *//
+
 func TestText(t *testing.T) {
 
-	// Create test cases
+	// Test Cases
 	testCases := []struct {
 		name      string
 		input     []string
@@ -48,7 +50,7 @@ func TestText(t *testing.T) {
 		},
 	}
 
-	// Run test cases
+	// Run Test Cases
 	for _, testCase := range testCases {
 		t.Run(testCase.name, func(t *testing.T) {
 
@@ -62,7 +64,7 @@ func TestText(t *testing.T) {
 
 			// Check the output
 			if text.String() != testCase.expected {
-				t.Errorf("Expected %s, got %s", testCase.expected, text.String())
+				t.Errorf("%s: want %s, got %s", testCase.name, testCase.expected, text.String())
 			}
 		})
 	}
@@ -70,6 +72,7 @@ func TestText(t *testing.T) {
 }
 
 func ExampleText() {
+
 	// Create a new text node
 	text := Text("Hello,", "world!")
 
@@ -77,4 +80,5 @@ func ExampleText() {
 	fmt.Println(text)
 
 	// Output: Hello, world!
+
 }

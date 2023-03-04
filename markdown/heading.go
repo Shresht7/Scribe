@@ -72,3 +72,9 @@ func H5(contents ...scribe.Node) *NodeHeading {
 func H6(contents ...scribe.Node) *NodeHeading {
 	return Heading(6, contents...)
 }
+
+// Write the heading to the document
+func (doc *MarkdownDocument) WriteHeading(level int, contents ...scribe.Node) *MarkdownDocument {
+	doc.AppendChild(Heading(level, contents...))
+	return doc
+}

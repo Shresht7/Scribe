@@ -34,3 +34,11 @@ func (blockquote *NodeBlockQuote) String() string {
 	}
 	return strings.Join(res, blockquote.Separator)
 }
+
+// Write a blockquote to the document with the given contents
+func (doc *MarkdownDocument) WriteBlockQuote(contents ...string) *MarkdownDocument {
+	for _, content := range contents {
+		doc.AppendChild(BlockQuote(Text(content)))
+	}
+	return doc
+}

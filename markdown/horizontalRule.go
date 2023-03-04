@@ -33,3 +33,9 @@ func HorizontalRule(ch rune, rep int) *NodeHorizontalRule {
 func (hr *NodeHorizontalRule) String() string {
 	return strings.Repeat(string(hr.character), hr.Repeat)
 }
+
+// Write a horizontal rule to the document
+func (doc *MarkdownDocument) WriteHorizontalRule(ch rune, rep int) *MarkdownDocument {
+	doc.AppendChild(HorizontalRule(ch, rep))
+	return doc
+}

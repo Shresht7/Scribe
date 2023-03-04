@@ -8,7 +8,7 @@ import (
 
 //* DOCUMENT *//
 
-// Document is a document.
+// MarkdownDocument is a document that can be rendered as Markdown
 type MarkdownDocument struct {
 	buf *bytes.Buffer
 	scribe.Document
@@ -29,9 +29,10 @@ func NewDocument() *MarkdownDocument {
 	}
 }
 
-// Implement the Node interface for NodeDocument
+// Implement the Node interface for MarkdownDocument
 func (document *MarkdownDocument) String() string {
-	// Reset the buffer to empty it
+	// Reset the buffer to empty it because we don't want
+	// the previous contents to be included in the new string
 	document.buf.Reset()
 
 	// Iterate over the nodes

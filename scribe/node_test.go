@@ -5,6 +5,8 @@ import (
 	"testing"
 )
 
+//* NODE LITERAL *//
+
 func TestNodeLiteral(t *testing.T) {
 
 	// Test Cases
@@ -30,7 +32,7 @@ func TestNodeLiteral(t *testing.T) {
 		t.Run(testCase.description, func(t *testing.T) {
 			got := testCase.literal.String()
 			if got != testCase.want {
-				t.Errorf("got %q, want %q", got, testCase.want)
+				t.Errorf("%s: got %q, want %q", testCase.description, got, testCase.want)
 			}
 		})
 	}
@@ -40,17 +42,20 @@ func TestNodeLiteral(t *testing.T) {
 func ExampleNodeLiteral() {
 
 	// Create a new NodeLiteral
-	node := &NodeLiteral{"Hello World"}
-
-	// or use the Literal() function
-	node = Literal("Hello World")
-
-	// Print the string representation of the node
+	node := &NodeLiteral{"Hello"}
 	fmt.Println(node)
 
-	// Output: Hello World
+	// or use the Literal() function
+	node = Literal("World")
+	fmt.Println(node)
+
+	// Output:
+	// Hello
+	// World
 
 }
+
+//* NODE PARENT *//
 
 func TestNodeParent(t *testing.T) {
 
@@ -76,6 +81,28 @@ func TestNodeParent(t *testing.T) {
 			},
 			want: "Hello World",
 		},
+		{
+			description: "Parent with other Containers as Children",
+			parent: &NodeParent{
+				Separator: " ",
+				Nodes: []Node{
+					&NodeLiteral{"One"},
+					&NodeParent{
+						Separator: "-",
+						Nodes: []Node{
+							Literal("Two"),
+							Literal("Three"),
+							Literal("Four"),
+						},
+					},
+					Container(
+						Literal("Five"),
+						Literal("Six"),
+					).WithSeparator("|"),
+				},
+			},
+			want: "One Two-Three-Four Five|Six",
+		},
 	}
 
 	// Run Test Cases
@@ -83,7 +110,7 @@ func TestNodeParent(t *testing.T) {
 		t.Run(testCase.description, func(t *testing.T) {
 			got := testCase.parent.String()
 			if got != testCase.want {
-				t.Errorf("got %q, want %q", got, testCase.want)
+				t.Errorf("%s: got %q, want %q", testCase.description, got, testCase.want)
 			}
 		})
 	}

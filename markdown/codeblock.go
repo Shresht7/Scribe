@@ -24,3 +24,9 @@ func CodeBlock(contents string, languages ...string) *NodeCodeBlock {
 func (n *NodeCodeBlock) String() string {
 	return n.WithMetadata(n.Languages...).String()
 }
+
+// Write a code block to the document
+func (doc *MarkdownDocument) WriteCodeBlock(contents string, languages ...string) *MarkdownDocument {
+	doc.AppendChild(CodeBlock(contents, languages...))
+	return doc
+}

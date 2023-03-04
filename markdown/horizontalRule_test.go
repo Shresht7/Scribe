@@ -7,7 +7,7 @@ import (
 
 func TestHorizontalRule(t *testing.T) {
 
-	// Create test cases
+	// Test Cases
 	testCases := []struct {
 		description string
 		hr          string
@@ -55,7 +55,7 @@ func TestHorizontalRule(t *testing.T) {
 		},
 	}
 
-	// Run test cases
+	// Run Test Cases
 	for _, testCase := range testCases {
 		if testCase.hr != testCase.expected {
 			t.Errorf("Expected %s, got %s", testCase.expected, testCase.hr)
