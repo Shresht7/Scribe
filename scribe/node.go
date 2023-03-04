@@ -1,6 +1,8 @@
 package scribe
 
-import "strings"
+import (
+	"strings"
+)
 
 //* NODE INTERFACE *//
 
