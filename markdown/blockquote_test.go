@@ -15,7 +15,7 @@ func TestBlockQuote(t *testing.T) {
 	}{
 		{
 			description: "Empty blockquote",
-			blockquote:  BlockQuote(Text("")).String(),
+			blockquote:  BlockQuote("").String(),
 			expected:    "> ",
 		},
 		{
@@ -50,7 +50,7 @@ func TestBlockQuote(t *testing.T) {
 
 func ExampleBlockQuote() {
 	// Create a new blockquote
-	blockquote := BlockQuote(Text("Blockquote Text"))
+	blockquote := BlockQuote("Blockquote Text")
 
 	// Print the blockquote
 	fmt.Println(blockquote)

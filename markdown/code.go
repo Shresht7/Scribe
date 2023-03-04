@@ -10,7 +10,7 @@ type NodeCode struct {
 }
 
 // Instantiate a new code text with the given contents
-func Code(contents ...scribe.Node) *NodeCode {
+func Code(contents ...any) *NodeCode {
 	// Create a new code
 	code := &NodeCode{}
 	code.WithSeparator(" ")

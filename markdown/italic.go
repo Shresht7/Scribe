@@ -10,7 +10,7 @@ type NodeItalic struct {
 }
 
 // Instantiate a new italic text with the given contents
-func Italic(contents ...scribe.Node) *NodeItalic {
+func Italic(contents ...any) *NodeItalic {
 	// Create a new italic
 	italic := &NodeItalic{}
 	italic.WithSeparator(" ")

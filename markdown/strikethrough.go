@@ -10,7 +10,7 @@ type NodeStrikeThrough struct {
 }
 
 // Instantiate a new strikethrough text with the given contents
-func StrikeThrough(contents ...scribe.Node) *NodeStrikeThrough {
+func StrikeThrough(contents ...any) *NodeStrikeThrough {
 	// Create a new strikethrough text
 	strikethrough := &NodeStrikeThrough{}
 	strikethrough.WithSeparator(" ")

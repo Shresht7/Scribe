@@ -68,7 +68,19 @@ func (parent *NodeParent) String() string {
 }
 
 // AppendChild appends the given node to the parent node.
-func (parent *NodeParent) AppendChild(nodes ...Node) *NodeParent {
-	parent.Nodes = append(parent.Nodes, nodes...)
+func (parent *NodeParent) AppendChild(nodes ...any) *NodeParent {
+	// Iterate over the nodes
+	for _, node := range nodes {
+		// Append the node to the parent
+		switch v := node.(type) {
+		case string:
+			// If the node is a string, then create a new NodeLiteral
+			parent.Nodes = append(parent.Nodes, &NodeLiteral{v})
+		case Node:
+			// If the node is a Node, then append it directly
+			parent.Nodes = append(parent.Nodes, v)
+		}
+	}
+	// Return the parent
 	return parent
 }

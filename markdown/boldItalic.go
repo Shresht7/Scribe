@@ -10,7 +10,7 @@ type NodeBoldItalic struct {
 }
 
 // Instantiate a new bold italic text with the given contents
-func BoldItalic(contents ...scribe.Node) *NodeBoldItalic {
+func BoldItalic(contents ...any) *NodeBoldItalic {
 	// Create a new bold italic
 	boldItalic := &NodeBoldItalic{}
 	boldItalic.WithSeparator(" ")

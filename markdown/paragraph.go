@@ -12,7 +12,7 @@ type NodeParagraph struct {
 }
 
 // Instantiate a new paragraph with the given contents
-func Paragraph(contents ...scribe.Node) *NodeParagraph {
+func Paragraph(contents ...any) *NodeParagraph {
 	paragraph := &NodeParagraph{}
 	paragraph.WithSeparator("\n")
 	paragraph.AppendChild(contents...)

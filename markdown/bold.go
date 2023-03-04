@@ -10,7 +10,7 @@ type NodeBold struct {
 }
 
 // Instantiate new bold text with the given contents
-func Bold(contents ...scribe.Node) *NodeBold {
+func Bold(contents ...any) *NodeBold {
 	// Create a new bold text
 	bold := &NodeBold{}
 	bold.WithSeparator(" ")

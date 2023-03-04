@@ -14,7 +14,7 @@ type NodeBlockQuote struct {
 }
 
 // Instantiate a new blockquote with the given contents
-func BlockQuote(contents ...scribe.Node) *NodeBlockQuote {
+func BlockQuote(contents ...any) *NodeBlockQuote {
 	// Create a new blockquote
 	blockquote := &NodeBlockQuote{}
 	blockquote.WithSeparator("\n")

@@ -12,39 +12,39 @@ func TestText(t *testing.T) {
 	// Test Cases
 	testCases := []struct {
 		name      string
-		input     []string
+		input     []any
 		separator string
 		expected  string
 	}{
 		{
 			name:     "Empty",
-			input:    []string{},
+			input:    []any{},
 			expected: "",
 		},
 		{
 			name:     "Single",
-			input:    []string{"Hello, world!"},
+			input:    []any{"Hello, world!"},
 			expected: "Hello, world!",
 		},
 		{
 			name:     "Multiple",
-			input:    []string{"Hello,", "world!"},
+			input:    []any{"Hello,", "world!"},
 			expected: "Hello, world!",
 		},
 		{
 			name:      "Multiple with separator",
-			input:     []string{"One", "Two", "Three"},
+			input:     []any{"One", "Two", "Three"},
 			separator: "---",
 			expected:  "One---Two---Three",
 		},
 		{
 			name:     "Multiple with empty strings",
-			input:    []string{"One", "", "Three"},
+			input:    []any{"One", "", "Three"},
 			expected: "One  Three",
 		},
 		{
 			name:      "Multiple with newline strings",
-			input:     []string{"One", "Two", "Three"},
+			input:     []any{"One", "Two", "Three"},
 			separator: "\n",
 			expected:  "One\nTwo\nThree",
 		},
