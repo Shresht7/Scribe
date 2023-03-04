@@ -10,7 +10,7 @@ import (
 
 // MarkdownDocument is a document that can be rendered as Markdown
 type MarkdownDocument struct {
-	buf *bytes.Buffer
+	*bytes.Buffer
 	scribe.Document
 }
 
@@ -24,23 +24,21 @@ func NewDocument() *MarkdownDocument {
 
 	// Return the document
 	return &MarkdownDocument{
-		buf:      bytes.NewBuffer([]byte{}),
+		Buffer:   bytes.NewBuffer([]byte{}),
 		Document: *document,
 	}
 }
 
-// Implement the Node interface for MarkdownDocument
-func (document *MarkdownDocument) String() string {
+// Synchronizes the document bytes buffer with the document content nodes
+func (doc *MarkdownDocument) Sync() {
 	// Reset the buffer to empty it because we don't want
 	// the previous contents to be included in the new string
-	document.buf.Reset()
+	doc.Buffer.Reset()
 
 	// Iterate over the nodes
-	for _, node := range document.Nodes {
+	for _, node := range doc.Nodes {
 		// Add the node to the buffer
-		document.buf.WriteString(node.String() + document.Separator)
+		str := node.String() + doc.Separator
+		doc.Buffer.Write([]byte(str))
 	}
-
-	// Return the string
-	return document.buf.String()
 }
