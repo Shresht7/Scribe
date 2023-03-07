@@ -1,18 +1,19 @@
 package scribe
 
 import (
+	"io"
 	"strings"
 )
 
 //* NODE INTERFACE *//
 
 // Node is an interface for all nodes in the AST (Abstract Syntax Tree).
-// The only requirement is that the Node can be converted to the desired string
-// using the String() method (i.e. it implements the Stringer interface).
 type Node interface {
 	// ? Consider adding a `Type()` method to return the type of the node
-	// String() returns the string representation of the node
+	// Implement the Stringer interface
 	String() string
+	// Implement the io.Writer interface
+	io.Writer
 }
 
 //* NODE LITERAL *//
@@ -33,6 +34,15 @@ func NewLiteral(value string) *NodeLiteral {
 // Returns the literal string value of the node.
 func (literal *NodeLiteral) String() string {
 	return literal.value
+}
+
+// Implement the io.Writer interface for NodeLiteral.
+// Writes the given bytes to the literal node.
+func (literal *NodeLiteral) Write(p []byte) (int, error) {
+	// Append the bytes to the literal value
+	literal.value += string(p)
+	// Return the number of bytes written
+	return len(p), nil
 }
 
 //* NODE CONTAINER *//
@@ -56,24 +66,24 @@ func NewContainer(nodes ...Node) *NodeContainer {
 }
 
 // WithSeparator sets the separator for the NodeContainer
-func (n *NodeContainer) WithSeparator(separator string) *NodeContainer {
-	n.Separator = separator
-	return n
+func (container *NodeContainer) WithSeparator(separator string) *NodeContainer {
+	container.Separator = separator
+	return container
 }
 
 // Implement the Node interface for NodeContainer.
 // This is a recursive function that will call the String() method on all child nodes.
 // The default implementation of this Node interface is very basic.
-func (n *NodeContainer) String() string {
+func (container *NodeContainer) String() string {
 	res := []string{}
-	for _, node := range n.Nodes {
+	for _, node := range container.Nodes {
 		res = append(res, node.String())
 	}
-	return strings.Join(res, n.Separator)
+	return strings.Join(res, container.Separator)
 }
 
 // AppendChild appends the given node to the NodeContainer.
-func (n *NodeContainer) AppendChild(nodes ...any) *NodeContainer {
+func (container *NodeContainer) AppendChild(nodes ...any) *NodeContainer {
 
 	// Iterate over the nodes
 	for _, node := range nodes {
@@ -82,16 +92,27 @@ func (n *NodeContainer) AppendChild(nodes ...any) *NodeContainer {
 
 		case string:
 			// If the node is a string, then create a new NodeLiteral
-			n.Nodes = append(n.Nodes, &NodeLiteral{v})
+			container.Nodes = append(container.Nodes, &NodeLiteral{v})
 			// TODO: Change this case to default and let NodeLiteral handle the conversion
 
 		case Node:
 			// If the node is a Node, then append it directly
-			n.Nodes = append(n.Nodes, v)
+			container.Nodes = append(container.Nodes, v)
 
 		}
 	}
 
 	// Return the parent
-	return n
+	return container
+}
+
+// Implement the io.Writer interface for NodeContainer.
+// Writes the given bytes to the container node.
+func (container *NodeContainer) Write(p []byte) (int, error) {
+	// Create a new literal node
+	node := NewLiteral(string(p))
+	// Append the node to the container
+	container.AppendChild(node)
+	// Return the number of bytes written
+	return len(p), nil
 }
