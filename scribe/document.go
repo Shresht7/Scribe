@@ -18,3 +18,13 @@ func NewDocument() *Document {
 	return document
 
 }
+
+// Reimplement the io.Writer interface to use NodeText as the default node type
+func (document *Document) Write(p []byte) (n int, err error) {
+	// Create a new text node
+	node := NewText(string(p))
+	// Add the node to the document
+	document.AppendChild(node)
+	// Return the number of bytes written
+	return len(p), nil
+}
