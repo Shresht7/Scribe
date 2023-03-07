@@ -4,15 +4,15 @@ import "github.com/Shresht7/Scribe/scribe"
 
 //* STRIKETHROUGH *//
 
-// StrikeThrough is a strikethrough text.
-type NodeStrikeThrough struct {
+// NodeStrikethrough is a strikethrough text.
+type NodeStrikethrough struct {
 	scribe.NodeText
 }
 
 // Instantiate a new strikethrough text with the given contents
-func NewStrikeThrough(contents ...any) *NodeStrikeThrough {
+func NewStrikethrough(contents ...any) *NodeStrikethrough {
 	// Create a new strikethrough text
-	strikethrough := &NodeStrikeThrough{}
+	strikethrough := &NodeStrikethrough{}
 	strikethrough.WithSeparator(" ")
 
 	// Append the contents to the strikethrough text
@@ -23,10 +23,10 @@ func NewStrikeThrough(contents ...any) *NodeStrikeThrough {
 }
 
 // Implement the Node interface for NodeStrikeThrough
-func (bold *NodeStrikeThrough) String() string {
+func (bold *NodeStrikethrough) String() string {
 	return "~~" + bold.NodeText.String() + "~~"
 }
 
-func StrikeThrough(contents ...any) string {
-	return NewStrikeThrough(contents...).String()
+func Strikethrough(contents ...any) string {
+	return NewStrikethrough(contents...).String()
 }
