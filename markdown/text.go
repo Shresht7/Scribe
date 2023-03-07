@@ -11,7 +11,7 @@ type Node scribe.Node
 
 // Instantiates a new NodeText with the given contents
 func NewText(contents ...any) *scribe.NodeText {
-	return scribe.Text(contents...)
+	return scribe.NewText(contents...)
 }
 
 func Text(contents ...any) string {

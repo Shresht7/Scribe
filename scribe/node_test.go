@@ -22,7 +22,7 @@ func TestNodeLiteral(t *testing.T) {
 		},
 		{
 			description: "Literal with Value",
-			literal:     &NodeLiteral{Value: "Hello World"},
+			literal:     &NodeLiteral{"Hello World"},
 			want:        "Hello World",
 		},
 	}
@@ -46,7 +46,7 @@ func ExampleNodeLiteral() {
 	fmt.Println(node)
 
 	// or use the Literal() function
-	node = Literal("World")
+	node = NewLiteral("World")
 	fmt.Println(node)
 
 	// Output:
@@ -55,27 +55,27 @@ func ExampleNodeLiteral() {
 
 }
 
-//* NODE PARENT *//
+//* NODE CONTAINER *//
 
-func TestNodeParent(t *testing.T) {
+func TestNodeContainer(t *testing.T) {
 
 	// Test Cases
 	testCases := []struct {
 		description string
-		parent      *NodeParent
+		parent      *NodeContainer
 		want        string
 	}{
 		{
 			description: "Empty Parent",
-			parent:      &NodeParent{},
+			parent:      &NodeContainer{},
 			want:        "",
 		},
 		{
 			description: "Parent with Children",
-			parent: &NodeParent{
+			parent: &NodeContainer{
 				Separator: " ",
 				Nodes: []Node{
-					Literal("Hello"),
+					NewLiteral("Hello"),
 					&NodeLiteral{"World"},
 				},
 			},
@@ -83,21 +83,21 @@ func TestNodeParent(t *testing.T) {
 		},
 		{
 			description: "Parent with other Containers as Children",
-			parent: &NodeParent{
+			parent: &NodeContainer{
 				Separator: " ",
 				Nodes: []Node{
 					&NodeLiteral{"One"},
-					&NodeParent{
+					&NodeContainer{
 						Separator: "-",
 						Nodes: []Node{
-							Literal("Two"),
-							Literal("Three"),
-							Literal("Four"),
+							NewLiteral("Two"),
+							NewLiteral("Three"),
+							NewLiteral("Four"),
 						},
 					},
-					Container(
-						Literal("Five"),
-						Literal("Six"),
+					NewContainer(
+						NewLiteral("Five"),
+						NewLiteral("Six"),
 					).WithSeparator("|"),
 				},
 			},
@@ -117,20 +117,20 @@ func TestNodeParent(t *testing.T) {
 
 }
 
-func ExampleNodeParent() {
+func ExampleNodeContainer() {
 
 	// Create a new NodeParent
-	node := &NodeParent{
+	node := &NodeContainer{
 		Separator: " ",
 		Nodes: []Node{
-			Literal("Hello"),
+			NewLiteral("Hello"),
 			&NodeLiteral{"World"},
 		},
 	}
 
 	// or use the Container() function
-	node = Container(
-		Literal("Hello"),
+	node = NewContainer(
+		NewLiteral("Hello"),
 		&NodeLiteral{"World"},
 	).WithSeparator(" ")
 

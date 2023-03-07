@@ -13,11 +13,11 @@ func ExampleMarkdownDocument() {
 
 	// Append some text nodes to the document
 	document.AppendChild(
-		markdown.NewHeading(1, scribe.Text("Markdown Document")),
+		markdown.NewHeading(1, scribe.NewText("Markdown Document")),
 		markdown.NewParagraph(
-			scribe.Text("Woah this is some paragraph!"),
+			scribe.NewText("Woah this is some paragraph!"),
 		).AppendChild(
-			scribe.Text("This is a test document."),
+			scribe.NewText("This is a test document."),
 		),
 	)
 

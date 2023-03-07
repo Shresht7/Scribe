@@ -23,10 +23,10 @@ func TestDocument(t *testing.T) {
 		{
 			description: "Document with Nodes",
 			document: &Document{
-				NodeParent: NodeParent{
+				NodeContainer: NodeContainer{
 					Separator: "\n",
 					Nodes: []Node{
-						Literal("Hello"),
+						NewLiteral("Hello"),
 						&NodeLiteral{"World"},
 					},
 				},
@@ -36,21 +36,21 @@ func TestDocument(t *testing.T) {
 		{
 			description: "Document with nested Nodes",
 			document: &Document{
-				NodeParent: NodeParent{
+				NodeContainer: NodeContainer{
 					Separator: "\n",
 					Nodes: []Node{
 						&NodeLiteral{"One"},
-						&NodeParent{
+						&NodeContainer{
 							Separator: "-",
 							Nodes: []Node{
-								Literal("Two"),
-								Literal("Three"),
-								Literal("Four"),
+								NewLiteral("Two"),
+								NewLiteral("Three"),
+								NewLiteral("Four"),
 							},
 						},
-						Container(
-							Literal("Five"),
-							Literal("Six"),
+						NewContainer(
+							NewLiteral("Five"),
+							NewLiteral("Six"),
 						).WithSeparator("|"),
 					},
 				},

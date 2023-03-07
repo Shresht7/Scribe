@@ -55,7 +55,7 @@ func TestText(t *testing.T) {
 		t.Run(testCase.name, func(t *testing.T) {
 
 			// Create a new text node
-			text := Text(testCase.input...)
+			text := NewText(testCase.input...)
 
 			// Join the text if a separator is provided
 			if testCase.separator != "" {
@@ -74,7 +74,7 @@ func TestText(t *testing.T) {
 func ExampleText() {
 
 	// Create a new text node
-	text := Text("Hello,", "world!")
+	text := NewText("Hello,", "world!")
 
 	// Print the string representation of the node
 	fmt.Println(text)

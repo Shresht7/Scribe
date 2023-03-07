@@ -16,8 +16,8 @@ func ExampleDocument_basic() {
 
 	// Append some text nodes to the document
 	document.AppendChild(
-		scribe.Text("Hello, world!"),
-		scribe.Text("This", "is", "a", "test", "document.").WithSeparator("---"),
+		scribe.NewText("Hello, world!"),
+		scribe.NewText("This", "is", "a", "test", "document.").WithSeparator("---"),
 	)
 
 	// Print the document to the console
@@ -41,10 +41,10 @@ func ExampleDocument_stringBuilder() {
 
 	// Append some text nodes to the document
 	document.AppendChild(
-		scribe.Text("Example: String Builder"),
-		scribe.Text("\n---\n"),
+		scribe.NewText("Example: String Builder"),
+		scribe.NewText("\n---\n"),
 		builder,
-		scribe.Text("\n---\n"),
+		scribe.NewText("\n---\n"),
 	)
 
 	// Print the document to the console
@@ -74,7 +74,7 @@ func ExampleDocument_templates() {
 
 	// Append some text nodes to the document
 	document.AppendChild(
-		scribe.Text("Example: String Builder + Templates"),
+		scribe.NewText("Example: String Builder + Templates"),
 		builder,
 	)
 
@@ -93,7 +93,7 @@ func ExampleDocument_writeToStdout() {
 
 	// Append some text nodes to the document
 	document.AppendChild(
-		scribe.Text("Example: Using io.Writer (os.Stdout)"),
+		scribe.NewText("Example: Using io.Writer (os.Stdout)"),
 	)
 
 	// write the document to the writer

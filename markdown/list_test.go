@@ -11,9 +11,9 @@ import (
 func TestOrderedList(t *testing.T) {
 
 	list := []any{
-		scribe.Text("Item 1"),
-		scribe.Text("Item 2"),
-		scribe.Text("Item 3"),
+		scribe.NewText("Item 1"),
+		scribe.NewText("Item 2"),
+		scribe.NewText("Item 3"),
 	}
 
 	// Create test cases
@@ -105,9 +105,9 @@ func ExampleNewOrderedList() {
 func TestUnorderedList(t *testing.T) {
 
 	list := []any{
-		scribe.Text("Item 1"),
-		scribe.Text("Item 2"),
-		scribe.Text("Item 3"),
+		scribe.NewText("Item 1"),
+		scribe.NewText("Item 2"),
+		scribe.NewText("Item 3"),
 	}
 
 	// Create test cases
