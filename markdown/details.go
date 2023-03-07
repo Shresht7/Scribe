@@ -17,7 +17,7 @@ type NodeDetails struct {
 }
 
 // Create a new details block
-func Details(summary string, contents ...any) *NodeDetails {
+func NewDetails(summary string, contents ...any) *NodeDetails {
 	details := &NodeDetails{
 		Summary: summary,
 	}
@@ -48,6 +48,11 @@ func (n *NodeDetails) String() string {
 
 // Write the details block to the document
 func (doc *MarkdownDocument) WriteDetails(summary string, contents ...any) *MarkdownDocument {
-	doc.AppendChild(Details(summary, contents...))
+	doc.AppendChild(NewDetails(summary, contents...))
 	return doc
+}
+
+// Create a new details block
+func Details(summary string, contents ...any) string {
+	return NewDetails(summary, contents...).String()
 }

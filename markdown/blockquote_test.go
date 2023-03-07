@@ -15,27 +15,35 @@ func TestBlockQuote(t *testing.T) {
 	}{
 		{
 			description: "Empty blockquote",
-			blockquote:  BlockQuote("").String(),
+			blockquote:  BlockQuote(""),
 			expected:    "> ",
 		},
 		{
 			description: "Blockquote with text",
-			blockquote:  BlockQuote(Text("Blockquote Text")).String(),
+			blockquote:  BlockQuote("Blockquote Text"),
 			expected:    "> Blockquote Text",
 		},
 		{
 			description: "Blockquote with multiple text nodes",
-			blockquote:  BlockQuote(Text("Blockquote"), Text("Text")).String(),
+			blockquote:  BlockQuote(NewText("Blockquote"), NewText("Text")),
 			expected:    "> Blockquote\n> Text",
 		},
 		{
 			description: "Blockquote with multiple text nodes and a separator",
 			blockquote: func() string {
-				b := BlockQuote(Text("Blockquote"), Text("Text"))
+				b := NewBlockQuote(NewText("Blockquote"), NewText("Text"))
 				b.WithSeparator("\t")
 				return b.String()
 			}(),
 			expected: "> Blockquote\t> Text",
+		},
+		{
+			description: "Blockquote with multiple text nodes and empty lines",
+			blockquote: func() string {
+				b := NewBlockQuote("Blockquote", "", NewBold("Text"))
+				return b.String()
+			}(),
+			expected: "> Blockquote\n> \n> **Text**",
 		},
 	}
 
@@ -61,9 +69,9 @@ func ExampleBlockQuote() {
 
 func ExampleBlockQuote_multipleTextNodes() {
 	// Create a new blockquote
-	blockquote := BlockQuote(
-		Text("Blockquote"),
-		Bold(Text("Text")),
+	blockquote := NewBlockQuote(
+		NewText("Blockquote"),
+		NewBold("Text"),
 	)
 
 	// Print the blockquote

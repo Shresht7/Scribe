@@ -15,22 +15,22 @@ func TestImage(t *testing.T) {
 	}{
 		{
 			description: "Test image with alt and url",
-			image:       Image("Alt", "URL").String(),
+			image:       NewImage("Alt", "URL").String(),
 			expected:    "![Alt](URL)",
 		},
 		{
 			description: "Test image with real alt and url",
-			image:       Image("Google", "https://www.google.com").String(),
+			image:       NewImage("Google", "https://www.google.com").String(),
 			expected:    "![Google](https://www.google.com)",
 		},
 		{
 			description: "Test image with empty alt and url",
-			image:       Image("", "").String(),
+			image:       NewImage("", "").String(),
 			expected:    "![]()",
 		},
 		{
 			description: "Test image with relative url",
-			image:       Image("Relative", "/relative").String(),
+			image:       NewImage("Relative", "/relative").String(),
 			expected:    "![Relative](/relative)",
 		},
 	}
@@ -46,7 +46,7 @@ func TestImage(t *testing.T) {
 
 func ExampleImage() {
 	// Create an image
-	image := Image("Alt", "URL")
+	image := NewImage("Alt", "URL")
 	// Print the image
 	fmt.Println(image)
 	// Output: ![Alt](URL)

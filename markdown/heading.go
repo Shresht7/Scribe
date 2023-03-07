@@ -15,7 +15,7 @@ type NodeHeading struct {
 }
 
 // Instantiate a new heading with the given contents
-func Heading(level int, contents ...any) *NodeHeading {
+func NewHeading(level int, contents ...any) *NodeHeading {
 	// If the level is less than 1, set it to 1
 	if level < 1 {
 		level = 1
@@ -43,38 +43,43 @@ func (heading *NodeHeading) String() string {
 	return strings.Repeat("#", heading.Level) + " " + heading.NodeText.String()
 }
 
+// Write the heading to the document
+func (doc *MarkdownDocument) WriteHeading(level int, contents string) *MarkdownDocument {
+	doc.AppendChild(NewHeading(level, NewText(contents)))
+	return doc
+}
+
+// Create a new heading with the given contents
+func Heading(level int, contents ...any) string {
+	return NewHeading(level, contents...).String()
+}
+
 // H1 is a convenience function for creating a heading of level 1.
-func H1(contents ...any) *NodeHeading {
-	return Heading(1, contents...)
+func H1(contents ...any) string {
+	return NewHeading(1, contents...).String()
 }
 
 // H2 is a convenience function for creating a heading of level 2.
-func H2(contents ...any) *NodeHeading {
-	return Heading(2, contents...)
+func H2(contents ...any) string {
+	return NewHeading(2, contents...).String()
 }
 
 // H3 is a convenience function for creating a heading of level 3.
-func H3(contents ...any) *NodeHeading {
-	return Heading(3, contents...)
+func H3(contents ...any) string {
+	return NewHeading(3, contents...).String()
 }
 
 // H4 is a convenience function for creating a heading of level 4.
-func H4(contents ...any) *NodeHeading {
-	return Heading(4, contents...)
+func H4(contents ...any) string {
+	return NewHeading(4, contents...).String()
 }
 
 // H5 is a convenience function for creating a heading of level 5.
-func H5(contents ...any) *NodeHeading {
-	return Heading(5, contents...)
+func H5(contents ...any) string {
+	return NewHeading(5, contents...).String()
 }
 
 // H6 is a convenience function for creating a heading of level 6.
-func H6(contents ...any) *NodeHeading {
-	return Heading(6, contents...)
-}
-
-// Write the heading to the document
-func (doc *MarkdownDocument) WriteHeading(level int, contents string) *MarkdownDocument {
-	doc.AppendChild(Heading(level, Text(contents)))
-	return doc
+func H6(contents ...any) string {
+	return NewHeading(6, contents...).String()
 }

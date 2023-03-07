@@ -13,10 +13,11 @@ type NodeFencedBlock struct {
 }
 
 // Create a new fenced block
-func FencedBlock(contents string) *NodeFencedBlock {
+func NewFencedBlock(contents ...string) *NodeFencedBlock {
+	Contents := strings.Join(contents, "\n")
 	return &NodeFencedBlock{
 		Fence:    "---",
-		Contents: contents,
+		Contents: Contents,
 	}
 }
 
@@ -53,6 +54,11 @@ func (n *NodeFencedBlock) String() string {
 
 // Write a fenced block to the document
 func (doc *MarkdownDocument) WriteFencedBlock(contents string) *MarkdownDocument {
-	doc.AppendChild(FencedBlock(contents))
+	doc.AppendChild(NewFencedBlock(contents))
 	return doc
+}
+
+// Create a new fenced block with the given contents
+func FencedBlock(contents ...string) string {
+	return NewFencedBlock(contents...).String()
 }

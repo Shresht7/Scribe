@@ -10,6 +10,10 @@ import "github.com/Shresht7/Scribe/scribe"
 type Node scribe.Node
 
 // Instantiates a new NodeText with the given contents
-func Text(contents ...any) *scribe.NodeText {
+func NewText(contents ...any) *scribe.NodeText {
 	return scribe.Text(contents...)
+}
+
+func Text(contents ...any) string {
+	return NewText(contents...).String()
 }

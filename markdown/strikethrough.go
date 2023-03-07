@@ -10,7 +10,7 @@ type NodeStrikeThrough struct {
 }
 
 // Instantiate a new strikethrough text with the given contents
-func StrikeThrough(contents ...any) *NodeStrikeThrough {
+func NewStrikeThrough(contents ...any) *NodeStrikeThrough {
 	// Create a new strikethrough text
 	strikethrough := &NodeStrikeThrough{}
 	strikethrough.WithSeparator(" ")
@@ -25,4 +25,8 @@ func StrikeThrough(contents ...any) *NodeStrikeThrough {
 // Implement the Node interface for NodeStrikeThrough
 func (bold *NodeStrikeThrough) String() string {
 	return "~~" + bold.NodeText.String() + "~~"
+}
+
+func StrikeThrough(contents ...any) string {
+	return NewStrikeThrough(contents...).String()
 }

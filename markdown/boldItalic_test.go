@@ -7,7 +7,7 @@ import (
 
 func TestBoldItalic(t *testing.T) {
 
-	// Create test cases
+	// Test Cases
 	testCases := []struct {
 		description string
 		boldItalic  string
@@ -15,31 +15,31 @@ func TestBoldItalic(t *testing.T) {
 	}{
 		{
 			description: "Empty bold italic",
-			boldItalic:  BoldItalic(Text("")).String(),
+			boldItalic:  BoldItalic(""),
 			expected:    "******",
 		},
 		{
 			description: "Bold italic with text",
-			boldItalic:  BoldItalic(Text("Bold Italic Text")).String(),
+			boldItalic:  BoldItalic("Bold Italic Text"),
 			expected:    "***Bold Italic Text***",
 		},
 		{
 			description: "Bold italic with multiple text nodes",
-			boldItalic:  BoldItalic(Text("Bold"), Text("Italic"), Text("Text")).String(),
+			boldItalic:  NewBoldItalic(NewText("Bold"), NewText("Italic"), NewText("Text")).String(),
 			expected:    "***Bold Italic Text***",
 		},
 		{
 			description: "Bold italic with multiple text nodes and a separator",
 			boldItalic: func() string {
-				b := BoldItalic(Text("Bold"), Text("Italic"), Text("Text"))
-				b.WithSeparator(" ")
+				b := NewBoldItalic(NewText("Bold"), NewText("Italic"), NewText("Text"))
+				b.WithSeparator("-")
 				return b.String()
 			}(),
-			expected: "***Bold Italic Text***",
+			expected: "***Bold-Italic-Text***",
 		},
 	}
 
-	// Run test cases
+	// Run Test Cases
 	for _, testCase := range testCases {
 		if testCase.boldItalic != testCase.expected {
 			t.Errorf("Expected %s, got %s", testCase.expected, testCase.boldItalic)
@@ -50,7 +50,7 @@ func TestBoldItalic(t *testing.T) {
 
 func ExampleBoldItalic() {
 	// Create a new bold italic
-	boldItalic := BoldItalic(Text("Bold Italic Text"))
+	boldItalic := BoldItalic("Bold Italic Text")
 
 	// Print the bold italic
 	fmt.Println(boldItalic)

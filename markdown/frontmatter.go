@@ -9,15 +9,20 @@ type NodeFrontMatter struct {
 }
 
 // Create a new frontmatter block
-func FrontMatter(kind, contents string) *NodeFrontMatter {
+func NewFrontMatter(kind, contents string) *NodeFrontMatter {
 	return &NodeFrontMatter{
-		NodeFencedBlock: FencedBlock(contents),
+		NodeFencedBlock: NewFencedBlock(contents),
 		Kind:            kind,
 	}
 }
 
 // Write a frontmatter block to the document
 func (doc *MarkdownDocument) WriteFrontMatter(kind, contents string) *MarkdownDocument {
-	doc.AppendChild(FrontMatter(kind, contents))
+	doc.AppendChild(NewFrontMatter(kind, contents))
 	return doc
+}
+
+// Create a new frontmatter block with the given contents
+func FrontMatter(kind, contents string) string {
+	return NewFrontMatter(kind, contents).String()
 }

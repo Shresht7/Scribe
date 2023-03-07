@@ -9,7 +9,7 @@ type NodeImage struct {
 }
 
 // Instantiate a new image with the given contents
-func Image(alt, url string) *NodeImage {
+func NewImage(alt, url string) *NodeImage {
 	return &NodeImage{
 		URL: url,
 		Alt: alt,
@@ -19,4 +19,9 @@ func Image(alt, url string) *NodeImage {
 // Implement the Node interface for NodeImage
 func (image *NodeImage) String() string {
 	return "![" + image.Alt + "](" + image.URL + ")"
+}
+
+// Create a new image with the given contents
+func Image(alt, url string) string {
+	return NewImage(alt, url).String()
 }

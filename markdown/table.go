@@ -21,7 +21,7 @@ type NodeTable struct {
 }
 
 // Create a new table node
-func Table(header []string, rows [][]string) *NodeTable {
+func NewTable(header []string, rows [][]string) *NodeTable {
 	// Determine the max width of each column
 	columnWidths := helpers.DetermineWidths(append([][]string{header}, rows...))
 
@@ -120,6 +120,10 @@ func (n *NodeTable) String() string {
 
 // Write Table to the document
 func (doc *MarkdownDocument) WriteTable(header []string, rows [][]string) *MarkdownDocument {
-	doc.AppendChild(Table(header, rows))
+	doc.AppendChild(NewTable(header, rows))
 	return doc
+}
+
+func Table(header []string, rows [][]string) string {
+	return NewTable(header, rows).String()
 }

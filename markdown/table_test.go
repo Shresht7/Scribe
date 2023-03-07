@@ -50,7 +50,7 @@ func TestRenderHeader(t *testing.T) {
 
 	// Run Test Cases
 	for _, testCase := range testCases {
-		table := Table(testCase.Header, testCase.Rows)
+		table := NewTable(testCase.Header, testCase.Rows)
 		table.Align = testCase.Align
 		header := table.renderHeader()
 		if header != testCase.Result {
@@ -106,7 +106,7 @@ func TestRenderDivider(t *testing.T) {
 
 	// Run Test Cases
 	for _, testCase := range testCases {
-		table := Table(testCase.Header, testCase.Rows)
+		table := NewTable(testCase.Header, testCase.Rows)
 		table.Align = testCase.Align
 		divider := table.renderDivider()
 		if divider != testCase.Result {
@@ -170,7 +170,7 @@ func TestRenderRow(t *testing.T) {
 
 	// Run Test Cases
 	for _, testCase := range testCases {
-		table := Table(testCase.Header, testCase.Rows)
+		table := NewTable(testCase.Header, testCase.Rows)
 		table.Align = testCase.Align
 		rows := table.renderRows()
 		if rows != testCase.Result {
@@ -183,7 +183,7 @@ func TestRenderRow(t *testing.T) {
 func TestTable(t *testing.T) {
 
 	// Create a table
-	table := Table([]string{"Name", "Age"}, [][]string{
+	table := NewTable([]string{"Name", "Age"}, [][]string{
 		{"Alice", "20"},
 		{"Bob", "30"},
 	})
@@ -202,7 +202,7 @@ func TestTable(t *testing.T) {
 
 func ExampleTable() {
 	// Create a table
-	table := Table([]string{"Name", "Age"}, [][]string{
+	table := NewTable([]string{"Name", "Age"}, [][]string{
 		{"Alice", "20"},
 		{"Bob", "30"},
 	})

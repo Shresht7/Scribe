@@ -15,23 +15,23 @@ func TestStrikeThrough(t *testing.T) {
 	}{
 		{
 			name:          "Empty",
-			strikethrough: StrikeThrough(Text("")).String(),
+			strikethrough: NewStrikeThrough(NewText("")).String(),
 			expected:      "~~~~",
 		},
 		{
 			name:          "Single",
-			strikethrough: StrikeThrough(Text("Hello")).String(),
+			strikethrough: NewStrikeThrough(NewText("Hello")).String(),
 			expected:      "~~Hello~~",
 		},
 		{
 			name:          "Multiple",
-			strikethrough: StrikeThrough(Text("Hello"), Text("World")).String(),
+			strikethrough: NewStrikeThrough(NewText("Hello"), NewText("World")).String(),
 			expected:      "~~Hello World~~",
 		},
 		{
 			name: "Multiple with separator",
 			strikethrough: func() string {
-				s := StrikeThrough(Text("Hello"), Text("World"))
+				s := NewStrikeThrough(NewText("Hello"), NewText("World"))
 				s.WithSeparator("_")
 				return s.String()
 			}(),
@@ -50,7 +50,7 @@ func TestStrikeThrough(t *testing.T) {
 
 func ExampleStrikeThrough() {
 	// Create a strikethrough
-	strikethrough := StrikeThrough(Text("Hello"))
+	strikethrough := NewStrikeThrough(NewText("Hello"))
 	// Print the strikethrough
 	fmt.Println(strikethrough)
 	// Output: ~~Hello~~

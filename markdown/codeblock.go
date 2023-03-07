@@ -10,7 +10,7 @@ type NodeCodeBlock struct {
 }
 
 // Create a new code block
-func CodeBlock(contents string, languages ...string) *NodeCodeBlock {
+func NewCodeBlock(contents string, languages ...string) *NodeCodeBlock {
 	return &NodeCodeBlock{
 		Languages: languages,
 		NodeFencedBlock: NodeFencedBlock{
@@ -27,6 +27,11 @@ func (n *NodeCodeBlock) String() string {
 
 // Write a code block to the document
 func (doc *MarkdownDocument) WriteCodeBlock(contents string, languages ...string) *MarkdownDocument {
-	doc.AppendChild(CodeBlock(contents, languages...))
+	doc.AppendChild(NewCodeBlock(contents, languages...))
 	return doc
+}
+
+// Create a new code block with the given contents
+func CodeBlock(contents string, languages ...string) string {
+	return NewCodeBlock(contents, languages...).String()
 }
