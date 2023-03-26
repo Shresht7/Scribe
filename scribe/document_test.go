@@ -1,7 +1,6 @@
 package scribe
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -68,26 +67,5 @@ func TestDocument(t *testing.T) {
 			}
 		})
 	}
-
-}
-
-func ExampleDocument() {
-
-	// Create a new Document
-	document := NewDocument()
-	document.WithSeparator("\n")
-
-	// Write some text to the document
-	document.WriteText("Hello World")
-
-	// Write some more text to the document
-	document.WriteText("This", "is", "a", "test", "document")
-
-	// Print the document
-	fmt.Println(document)
-
-	// Output:
-	// Hello World
-	// This is a test document
 
 }
