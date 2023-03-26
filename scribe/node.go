@@ -109,10 +109,8 @@ func (container *NodeContainer) AppendChild(nodes ...any) *NodeContainer {
 // Implement the io.Writer interface for NodeContainer.
 // Writes the given bytes to the container node.
 func (container *NodeContainer) Write(p []byte) (int, error) {
-	// Create a new literal node
-	node := NewLiteral(string(p))
-	// Append the node to the container
-	container.AppendChild(node)
-	// Return the number of bytes written
-	return len(p), nil
+	// Get the last node in the container
+	lastNode := container.Nodes[len(container.Nodes)-1]
+	// Write the bytes to the last node
+	return lastNode.Write(p)
 }
