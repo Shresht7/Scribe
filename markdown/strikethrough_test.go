@@ -48,7 +48,7 @@ func TestStrikeThrough(t *testing.T) {
 
 }
 
-func ExampleStrikeThrough() {
+func ExampleStrikethrough() {
 	// Create a strikethrough
 	strikethrough := NewStrikethrough(NewText("Hello"))
 	// Print the strikethrough
