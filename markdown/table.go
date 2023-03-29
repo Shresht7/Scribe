@@ -3,7 +3,7 @@ package markdown
 import (
 	"strings"
 
-	"github.com/Shresht7/Scribe/helpers"
+	helpers "github.com/Shresht7/goutils/strings"
 )
 
 // * NodeTable *//
