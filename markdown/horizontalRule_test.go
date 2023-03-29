@@ -68,7 +68,7 @@ func ExampleHorizontalRule() {
 	md := NewParagraph()
 
 	md.AppendChild(NewText("This is a paragraph with a horizontal rule below it."))
-	md.AppendChild(NewHorizontalRule('-', 3))
+	md.AppendChild(NewHorizontalRule('-', 3).String())
 	md.AppendChild(NewText("This is a paragraph with a horizontal rule above it."))
 
 	fmt.Println(md)
