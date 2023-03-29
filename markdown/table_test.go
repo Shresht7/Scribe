@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Shresht7/Scribe/helpers"
+	helpers "github.com/Shresht7/goutils/strings"
 )
 
 func TestRenderHeader(t *testing.T) {
