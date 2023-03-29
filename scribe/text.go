@@ -6,14 +6,14 @@ package scribe
 // It is a special type of NodeContainer that joins the child nodes
 // with a single whitespace separator.
 type NodeText struct {
-	*NodeContainer
+	NodeContainer
 }
 
 // Instantiate a new NodeText with the given contents
 func NewText(contents ...any) *NodeText {
 	// Create a new text node
 	text := &NodeText{
-		NodeContainer: &NodeContainer{
+		NodeContainer: NodeContainer{
 			Separator: " ",
 		},
 	}
