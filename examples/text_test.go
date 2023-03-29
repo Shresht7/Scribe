@@ -83,7 +83,7 @@ func ExampleDocument_templates() {
 
 	// Append some text nodes to the document
 	document.AppendChild(
-		scribe.NewText("Example: String Builder + Templates"),
+		scribe.NewText("Example: String Builder + Templates\n"),
 	)
 
 	// Create a template and execute it
