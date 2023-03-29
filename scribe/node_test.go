@@ -186,7 +186,7 @@ func TestNodeContainer_Write(t *testing.T) {
 				},
 			},
 			input: "!",
-			want:  "Hello World !",
+			want:  "Hello World!",
 		},
 		{
 			description: "Parent with other Containers as Children",
@@ -209,7 +209,7 @@ func TestNodeContainer_Write(t *testing.T) {
 				},
 			},
 			input: "\n===\n",
-			want:  "One Two-Three-Four Five|Six \n===\n",
+			want:  "One Two-Three-Four Five|Six\n===\n",
 		},
 	}
 
