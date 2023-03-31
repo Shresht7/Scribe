@@ -34,6 +34,26 @@ func main() {
 }
 ```
 
+## Custom Nodes
+
+Creating custom nodes is as simple as creating a new struct that implements the `Node` interface.
+
+```go
+type CustomNode struct {
+    text string
+}
+
+func (c *CustomNode) String() string {
+    return ">> "+c.text
+}
+
+func main() {
+    doc := markdown.NewDocument()
+    doc.AppendChild(&CustomNode{"Hello World!"})
+    fmt.Println(doc) // >> Hello World!
+}
+```
+
 ---
 
 ## 📕 API Reference
