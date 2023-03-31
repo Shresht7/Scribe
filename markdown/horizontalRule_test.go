@@ -15,42 +15,42 @@ func TestHorizontalRule(t *testing.T) {
 	}{
 		{
 			description: "Empty horizontal rule",
-			hr:          HorizontalRule('-', 0).String(),
+			hr:          NewHorizontalRule('-', 0).String(),
 			expected:    "---",
 		},
 		{
 			description: "Horizontal rule with 3 dashes",
-			hr:          HorizontalRule('-', 3).String(),
+			hr:          NewHorizontalRule('-', 3).String(),
 			expected:    "---",
 		},
 		{
 			description: "Horizontal rule with 5 dashes",
-			hr:          HorizontalRule('-', 5).String(),
+			hr:          NewHorizontalRule('-', 5).String(),
 			expected:    "-----",
 		},
 		{
 			description: "Horizontal rule with 3 stars",
-			hr:          HorizontalRule('*', 3).String(),
+			hr:          NewHorizontalRule('*', 3).String(),
 			expected:    "***",
 		},
 		{
 			description: "Horizontal rule with 5 stars",
-			hr:          HorizontalRule('*', 5).String(),
+			hr:          NewHorizontalRule('*', 5).String(),
 			expected:    "*****",
 		},
 		{
 			description: "Horizontal rule with 3 underscores",
-			hr:          HorizontalRule('_', 3).String(),
+			hr:          NewHorizontalRule('_', 3).String(),
 			expected:    "___",
 		},
 		{
 			description: "Horizontal rule with 5 underscores",
-			hr:          HorizontalRule('_', 5).String(),
+			hr:          NewHorizontalRule('_', 5).String(),
 			expected:    "_____",
 		},
 		{
 			description: "--- is the default horizontal rule",
-			hr:          HorizontalRule('-', 0).String(),
+			hr:          NewHorizontalRule('-', 0).String(),
 			expected:    "---",
 		},
 	}
@@ -65,11 +65,11 @@ func TestHorizontalRule(t *testing.T) {
 }
 
 func ExampleHorizontalRule() {
-	md := Paragraph()
+	md := NewParagraph()
 
-	md.AppendChild(Text("This is a paragraph with a horizontal rule below it."))
-	md.AppendChild(HorizontalRule('-', 3))
-	md.AppendChild(Text("This is a paragraph with a horizontal rule above it."))
+	md.AppendChild(NewText("This is a paragraph with a horizontal rule below it."))
+	md.AppendChild(NewHorizontalRule('-', 3).String())
+	md.AppendChild(NewText("This is a paragraph with a horizontal rule above it."))
 
 	fmt.Println(md)
 

@@ -11,7 +11,7 @@ type NodeHorizontalRule struct {
 }
 
 // Instantiate a new horizontal rule with the given style
-func HorizontalRule(ch rune, rep int) *NodeHorizontalRule {
+func NewHorizontalRule(ch rune, rep int) *NodeHorizontalRule {
 	// If the character is not a valid character, set it to '-'
 	if ch != '*' && ch != '-' && ch != '_' {
 		ch = '-'
@@ -36,6 +36,11 @@ func (hr *NodeHorizontalRule) String() string {
 
 // Write a horizontal rule to the document
 func (doc *MarkdownDocument) WriteHorizontalRule(ch rune, rep int) *MarkdownDocument {
-	doc.AppendChild(HorizontalRule(ch, rep))
+	doc.AppendChild(NewHorizontalRule(ch, rep))
 	return doc
+}
+
+// Create a new horizontal rule with the given style
+func HorizontalRule(ch rune, rep int) string {
+	return NewHorizontalRule(ch, rep).String()
 }

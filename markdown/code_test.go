@@ -7,7 +7,7 @@ import (
 
 func TestCode(t *testing.T) {
 
-	// Create test cases
+	// Test Cases
 	testCases := []struct {
 		description string
 		code        string
@@ -15,31 +15,31 @@ func TestCode(t *testing.T) {
 	}{
 		{
 			description: "Empty code",
-			code:        Code(Text("")).String(),
+			code:        Code(""),
 			expected:    "``",
 		},
 		{
 			description: "Code with text",
-			code:        Code(Text("Code Text")).String(),
+			code:        Code("Code Text"),
 			expected:    "`Code Text`",
 		},
 		{
 			description: "Code with multiple text nodes",
-			code:        Code(Text("Code"), Text("Text")).String(),
+			code:        NewCode(NewText("Code"), NewText("Text")).String(),
 			expected:    "`Code Text`",
 		},
 		{
 			description: "Code with multiple text nodes and a separator",
 			code: func() string {
-				c := Code(Text("Code"), Text("Text"))
-				c.WithSeparator(" ")
+				c := NewCode(NewText("Code"), NewText("Text"))
+				c.WithSeparator("-")
 				return c.String()
 			}(),
-			expected: "`Code Text`",
+			expected: "`Code-Text`",
 		},
 	}
 
-	// Run test cases
+	// Run Test Cases
 	for _, testCase := range testCases {
 		if testCase.code != testCase.expected {
 			t.Errorf("Expected %s, got %s", testCase.expected, testCase.code)
@@ -50,7 +50,7 @@ func TestCode(t *testing.T) {
 
 func ExampleCode() {
 	// Create a new code text
-	code := Code(Text("Code Text"))
+	code := Code("Code Text")
 
 	// Print the code text
 	fmt.Println(code)

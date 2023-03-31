@@ -15,23 +15,23 @@ func TestItalic(t *testing.T) {
 	}{
 		{
 			description: "Empty italic",
-			italic:      Italic(Text("")).String(),
+			italic:      NewItalic(NewText("")).String(),
 			expected:    "**",
 		},
 		{
 			description: "Italic with text",
-			italic:      Italic(Text("Italic Text")).String(),
+			italic:      NewItalic(NewText("Italic Text")).String(),
 			expected:    "*Italic Text*",
 		},
 		{
 			description: "Italic with multiple text nodes",
-			italic:      Italic(Text("Italic"), Text("Text")).String(),
+			italic:      NewItalic(NewText("Italic"), NewText("Text")).String(),
 			expected:    "*Italic Text*",
 		},
 		{
 			description: "Italic with multiple text nodes and a separator",
 			italic: func() string {
-				i := Italic(Text("Italic"), Text("Text"))
+				i := NewItalic(NewText("Italic"), NewText("Text"))
 				i.WithSeparator(" ")
 				return i.String()
 			}(),
@@ -50,7 +50,7 @@ func TestItalic(t *testing.T) {
 
 func ExampleItalic() {
 	// Create an italic
-	italic := Italic(Text("Italic Text"))
+	italic := NewItalic(NewText("Italic Text"))
 	// Print the italic
 	fmt.Println(italic)
 	// Output: *Italic Text*

@@ -15,22 +15,22 @@ func TestLink(t *testing.T) {
 	}{
 		{
 			description: "Test link with title and url",
-			link:        Link("Title", "URL").String(),
+			link:        NewLink("Title", "URL").String(),
 			expected:    "[Title](URL)",
 		},
 		{
 			description: "Test link with real title and url",
-			link:        Link("Google", "https://www.google.com").String(),
+			link:        NewLink("Google", "https://www.google.com").String(),
 			expected:    "[Google](https://www.google.com)",
 		},
 		{
 			description: "Test link with empty title and url",
-			link:        Link("", "").String(),
+			link:        NewLink("", "").String(),
 			expected:    "[]()",
 		},
 		{
 			description: "Test link with relative url",
-			link:        Link("Relative", "/relative").String(),
+			link:        NewLink("Relative", "/relative").String(),
 			expected:    "[Relative](/relative)",
 		},
 	}
@@ -46,7 +46,7 @@ func TestLink(t *testing.T) {
 
 func ExampleLink() {
 	// Create a link
-	link := Link("Title", "URL")
+	link := NewLink("Title", "URL")
 	// Print the link
 	fmt.Println(link)
 	// Output: [Title](URL)

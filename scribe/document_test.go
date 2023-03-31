@@ -1,7 +1,6 @@
 package scribe
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -23,10 +22,10 @@ func TestDocument(t *testing.T) {
 		{
 			description: "Document with Nodes",
 			document: &Document{
-				NodeParent: NodeParent{
+				NodeContainer: NodeContainer{
 					Separator: "\n",
 					Nodes: []Node{
-						Literal("Hello"),
+						NewLiteral("Hello"),
 						&NodeLiteral{"World"},
 					},
 				},
@@ -36,21 +35,21 @@ func TestDocument(t *testing.T) {
 		{
 			description: "Document with nested Nodes",
 			document: &Document{
-				NodeParent: NodeParent{
+				NodeContainer: NodeContainer{
 					Separator: "\n",
 					Nodes: []Node{
 						&NodeLiteral{"One"},
-						&NodeParent{
+						&NodeContainer{
 							Separator: "-",
 							Nodes: []Node{
-								Literal("Two"),
-								Literal("Three"),
-								Literal("Four"),
+								NewLiteral("Two"),
+								NewLiteral("Three"),
+								NewLiteral("Four"),
 							},
 						},
-						Container(
-							Literal("Five"),
-							Literal("Six"),
+						NewContainer(
+							NewLiteral("Five"),
+							NewLiteral("Six"),
 						).WithSeparator("|"),
 					},
 				},
@@ -68,26 +67,5 @@ func TestDocument(t *testing.T) {
 			}
 		})
 	}
-
-}
-
-func ExampleDocument() {
-
-	// Create a new Document
-	document := NewDocument()
-	document.WithSeparator("\n")
-
-	// Write some text to the document
-	document.WriteText("Hello World")
-
-	// Write some more text to the document
-	document.WriteText("This", "is", "a", "test", "document")
-
-	// Print the document
-	fmt.Println(document)
-
-	// Output:
-	// Hello World
-	// This is a test document
 
 }

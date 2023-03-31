@@ -15,7 +15,7 @@ func TestDetails(t *testing.T) {
 	}{
 		{
 			description: "Simple Details",
-			details:     Details("description", Text("This is a simple details block")).String(),
+			details:     Details("description", "This is a simple details block"),
 			expected:    "<details>\n\n<summary>description</summary>\n\nThis is a simple details block\n\n</details>",
 		},
 	}
@@ -31,7 +31,7 @@ func TestDetails(t *testing.T) {
 
 func ExampleDetails() {
 	// Create a new details block
-	details := Details("description", Text("This is a simple details block"))
+	details := Details("description", "This is a simple details block")
 
 	// Print the details block
 	fmt.Println(details)

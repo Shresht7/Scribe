@@ -15,27 +15,27 @@ func TestBold(t *testing.T) {
 	}{
 		{
 			description: "Empty bold",
-			bold:        Bold(Text("")).String(),
+			bold:        Bold(""),
 			expected:    "****",
 		},
 		{
 			description: "Bold with text",
-			bold:        Bold(Text("Bold Text")).String(),
+			bold:        Bold("Bold Text"),
 			expected:    "**Bold Text**",
 		},
 		{
 			description: "Bold with multiple text nodes",
-			bold:        Bold(Text("Bold"), Text("Text")).String(),
+			bold:        NewBold(NewText("Bold"), NewText("Text")).String(),
 			expected:    "**Bold Text**",
 		},
 		{
 			description: "Bold with multiple text nodes and a separator",
 			bold: func() string {
-				b := Bold(Text("Bold"), Text("Text"))
-				b.WithSeparator(" ")
+				b := NewBold(NewText("Bold"), NewText("Text"))
+				b.WithSeparator("-")
 				return b.String()
 			}(),
-			expected: "**Bold Text**",
+			expected: "**Bold-Text**",
 		},
 	}
 
@@ -50,7 +50,7 @@ func TestBold(t *testing.T) {
 
 func ExampleBold() {
 	// Create a new bold text
-	bold := Bold(Text("Bold Text"))
+	bold := Bold("Bold Text")
 
 	// Print the bold text
 	fmt.Println(bold)
@@ -61,9 +61,9 @@ func ExampleBold() {
 
 func ExampleBold_code() {
 	// Create a new bold text
-	bold := Bold(
-		Code(
-			Text("Bold Text"),
+	bold := NewBold(
+		NewCode(
+			NewText("Bold Text"),
 		),
 	)
 

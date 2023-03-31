@@ -15,47 +15,47 @@ func TestFencedBlock(t *testing.T) {
 	}{
 		{
 			description: "Empty",
-			fence:       FencedBlock("").String(),
+			fence:       FencedBlock(""),
 			expected:    "---\n\n---",
 		},
 		{
 			description: "With content",
-			fence:       FencedBlock("Content").String(),
+			fence:       NewFencedBlock("Content").String(),
 			expected:    "---\nContent\n---",
 		},
 		{
 			description: "With multiple lines of content",
-			fence:       FencedBlock("Line 1\nLine 2\nLine 3").String(),
+			fence:       FencedBlock("Line 1", "Line 2", "Line 3"),
 			expected:    "---\nLine 1\nLine 2\nLine 3\n---",
 		},
 		{
 			description: "With metadata",
-			fence:       FencedBlock("Content").WithMetadata("key1", "key2").String(),
+			fence:       NewFencedBlock("Content").WithMetadata("key1", "key2").String(),
 			expected:    "---key1 key2\nContent\n---",
 		},
 		{
 			description: "With multiple lines of content and metadata",
-			fence:       FencedBlock("Line 1\nLine 2\nLine 3").WithMetadata("key1", "key2").String(),
+			fence:       NewFencedBlock("Line 1\nLine 2\nLine 3").WithMetadata("key1", "key2").String(),
 			expected:    "---key1 key2\nLine 1\nLine 2\nLine 3\n---",
 		},
 		{
 			description: "With custom fence",
-			fence:       FencedBlock("Content").WithFence("~~~").String(),
+			fence:       NewFencedBlock("Content").WithFence("~~~").String(),
 			expected:    "~~~\nContent\n~~~",
 		},
 		{
 			description: "With custom fence and metadata",
-			fence:       FencedBlock("Content").WithFence("~~~").WithMetadata("key1", "key2").String(),
+			fence:       NewFencedBlock("Content").WithFence("~~~").WithMetadata("key1", "key2").String(),
 			expected:    "~~~key1 key2\nContent\n~~~",
 		},
 		{
 			description: "With custom fence and multiple lines of content",
-			fence:       FencedBlock("Line 1\nLine 2\nLine 3").WithFence("~~~").String(),
+			fence:       NewFencedBlock("Line 1\nLine 2\nLine 3").WithFence("~~~").String(),
 			expected:    "~~~\nLine 1\nLine 2\nLine 3\n~~~",
 		},
 		{
 			description: "With custom fence, multiple lines of content and metadata",
-			fence:       FencedBlock("Line 1\nLine 2\nLine 3").WithFence("~~~").WithMetadata("key1", "key2").String(),
+			fence:       NewFencedBlock("Line 1\nLine 2\nLine 3").WithFence("~~~").WithMetadata("key1", "key2").String(),
 			expected:    "~~~key1 key2\nLine 1\nLine 2\nLine 3\n~~~",
 		},
 	}

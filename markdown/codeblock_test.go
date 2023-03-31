@@ -15,22 +15,22 @@ func TestCodeBlock(t *testing.T) {
 	}{
 		{
 			description: "Empty",
-			codeblock:   CodeBlock("").String(),
+			codeblock:   CodeBlock(""),
 			expected:    "```\n\n```",
 		},
 		{
 			description: "With Code",
-			codeblock:   CodeBlock("fmt.Printf(\"Number: %d\", 12)").String(),
+			codeblock:   CodeBlock("fmt.Printf(\"Number: %d\", 12)"),
 			expected:    "```\nfmt.Printf(\"Number: %d\", 12)\n```",
 		},
 		{
 			description: "With Code and Language",
-			codeblock:   CodeBlock("fmt.Printf(\"Number: %d\", 12)", "go").String(),
+			codeblock:   NewCodeBlock("fmt.Printf(\"Number: %d\", 12)", "go").String(),
 			expected:    "```go\nfmt.Printf(\"Number: %d\", 12)\n```",
 		},
 		{
 			description: "With Code and More Metadata",
-			codeblock:   CodeBlock("fmt.Printf(\"Number: %d\", 12)").WithMetadata("go", "runnable").String(),
+			codeblock:   NewCodeBlock("fmt.Printf(\"Number: %d\", 12)").WithMetadata("go", "runnable").String(),
 			expected:    "```go runnable\nfmt.Printf(\"Number: %d\", 12)\n```",
 		},
 	}

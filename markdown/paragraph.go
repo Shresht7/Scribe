@@ -12,7 +12,7 @@ type NodeParagraph struct {
 }
 
 // Instantiate a new paragraph with the given contents
-func Paragraph(contents ...any) *NodeParagraph {
+func NewParagraph(contents ...any) *NodeParagraph {
 	paragraph := &NodeParagraph{}
 	paragraph.WithSeparator("\n")
 	paragraph.AppendChild(contents...)
@@ -21,10 +21,14 @@ func Paragraph(contents ...any) *NodeParagraph {
 
 // Write a paragraph to the document
 func (doc *MarkdownDocument) WriteParagraph(contents ...string) *MarkdownDocument {
-	paragraph := Paragraph()
+	paragraph := NewParagraph()
 	for _, content := range contents {
-		paragraph.AppendChild(Text(content))
+		paragraph.AppendChild(NewText(content))
 	}
 	doc.AppendChild(paragraph)
 	return doc
+}
+
+func Paragraph(contents ...any) string {
+	return NewParagraph(contents...).String()
 }

@@ -10,7 +10,7 @@ type NodeCode struct {
 }
 
 // Instantiate a new code text with the given contents
-func Code(contents ...any) *NodeCode {
+func NewCode(contents ...any) *NodeCode {
 	// Create a new code
 	code := &NodeCode{}
 	code.WithSeparator(" ")
@@ -25,4 +25,9 @@ func Code(contents ...any) *NodeCode {
 // Implement the Node interface for NodeCode
 func (code *NodeCode) String() string {
 	return "`" + code.NodeText.String() + "`"
+}
+
+// Create new code text with the given contents
+func Code(contents ...any) string {
+	return NewCode(contents...).String()
 }

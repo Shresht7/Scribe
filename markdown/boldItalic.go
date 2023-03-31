@@ -10,7 +10,7 @@ type NodeBoldItalic struct {
 }
 
 // Instantiate a new bold italic text with the given contents
-func BoldItalic(contents ...any) *NodeBoldItalic {
+func NewBoldItalic(contents ...any) *NodeBoldItalic {
 	// Create a new bold italic
 	boldItalic := &NodeBoldItalic{}
 	boldItalic.WithSeparator(" ")
@@ -25,4 +25,9 @@ func BoldItalic(contents ...any) *NodeBoldItalic {
 // Implement the Node interface for NodeBoldItalic
 func (boldItalic *NodeBoldItalic) String() string {
 	return "***" + boldItalic.NodeText.String() + "***"
+}
+
+// Creates new bold italic text with the given contents
+func BoldItalic(contents ...any) string {
+	return NewBoldItalic(contents...).String()
 }

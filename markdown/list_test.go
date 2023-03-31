@@ -10,10 +10,10 @@ import (
 
 func TestOrderedList(t *testing.T) {
 
-	list := []scribe.Node{
-		scribe.Text("Item 1"),
-		scribe.Text("Item 2"),
-		scribe.Text("Item 3"),
+	list := []any{
+		scribe.NewText("Item 1"),
+		scribe.NewText("Item 2"),
+		scribe.NewText("Item 3"),
 	}
 
 	// Create test cases
@@ -24,7 +24,7 @@ func TestOrderedList(t *testing.T) {
 	}{
 		{
 			name: "Ordered List",
-			list: OrderedList(list),
+			list: NewOrderedList(list),
 			expected: strings.Join([]string{
 				"1. Item 1",
 				"2. Item 2",
@@ -33,7 +33,7 @@ func TestOrderedList(t *testing.T) {
 		},
 		{
 			name: "Unordered List",
-			list: UnorderedList("*", list),
+			list: NewUnorderedList("*", list),
 			expected: strings.Join([]string{
 				"* Item 1",
 				"* Item 2",
@@ -42,7 +42,7 @@ func TestOrderedList(t *testing.T) {
 		},
 		{
 			name: "Unordered List with -",
-			list: UnorderedList("-", list),
+			list: NewUnorderedList("-", list),
 			expected: strings.Join([]string{
 				"- Item 1",
 				"- Item 2",
@@ -51,7 +51,7 @@ func TestOrderedList(t *testing.T) {
 		},
 		{
 			name: "Unordered List with +",
-			list: UnorderedList("+", list),
+			list: NewUnorderedList("+", list),
 			expected: strings.Join([]string{
 				"+ Item 1",
 				"+ Item 2",
@@ -60,7 +60,7 @@ func TestOrderedList(t *testing.T) {
 		},
 		{
 			name: "Unordered List with invalid decorator",
-			list: UnorderedList("x", list),
+			list: NewUnorderedList("x", list),
 			expected: strings.Join([]string{
 				"* Item 1",
 				"* Item 2",
@@ -82,16 +82,16 @@ func TestOrderedList(t *testing.T) {
 
 }
 
-func ExampleOrderedList() {
+func ExampleNewOrderedList() {
 	// Create a list of nodes
-	list := []scribe.Node{
-		Text("Item 1"),
-		Text("Item 2"),
-		Text("Item 3"),
+	list := []any{
+		NewText("Item 1"),
+		NewText("Item 2"),
+		NewText("Item 3"),
 	}
 
 	// Create an ordered list
-	listNode := OrderedList(list)
+	listNode := NewOrderedList(list)
 
 	// Print the list
 	fmt.Println(listNode)
@@ -104,10 +104,10 @@ func ExampleOrderedList() {
 
 func TestUnorderedList(t *testing.T) {
 
-	list := []scribe.Node{
-		scribe.Text("Item 1"),
-		scribe.Text("Item 2"),
-		scribe.Text("Item 3"),
+	list := []any{
+		scribe.NewText("Item 1"),
+		scribe.NewText("Item 2"),
+		scribe.NewText("Item 3"),
 	}
 
 	// Create test cases
@@ -118,7 +118,7 @@ func TestUnorderedList(t *testing.T) {
 	}{
 		{
 			name: "Ordered List",
-			list: OrderedList(list),
+			list: NewOrderedList(list),
 			expected: strings.Join([]string{
 				"1. Item 1",
 				"2. Item 2",
@@ -127,7 +127,7 @@ func TestUnorderedList(t *testing.T) {
 		},
 		{
 			name: "Unordered List",
-			list: UnorderedList("*", list),
+			list: NewUnorderedList("*", list),
 			expected: strings.Join([]string{
 				"* Item 1",
 				"* Item 2",
@@ -136,7 +136,7 @@ func TestUnorderedList(t *testing.T) {
 		},
 		{
 			name: "Unordered List with -",
-			list: UnorderedList("-", list),
+			list: NewUnorderedList("-", list),
 			expected: strings.Join([]string{
 				"- Item 1",
 				"- Item 2",
@@ -145,7 +145,7 @@ func TestUnorderedList(t *testing.T) {
 		},
 		{
 			name: "Unordered List with +",
-			list: UnorderedList("+", list),
+			list: NewUnorderedList("+", list),
 			expected: strings.Join([]string{
 				"+ Item 1",
 				"+ Item 2",
@@ -154,7 +154,7 @@ func TestUnorderedList(t *testing.T) {
 		},
 		{
 			name: "Unordered List with invalid decorator",
-			list: UnorderedList("x", list),
+			list: NewUnorderedList("x", list),
 			expected: strings.Join([]string{
 				"* Item 1",
 				"* Item 2",
@@ -178,14 +178,14 @@ func TestUnorderedList(t *testing.T) {
 
 func ExampleUnorderedList() {
 	// Create a list of nodes
-	list := []scribe.Node{
-		Text("Item 1"),
-		Text("Item 2"),
-		Text("Item 3"),
+	list := []any{
+		NewText("Item 1"),
+		NewText("Item 2"),
+		NewText("Item 3"),
 	}
 
 	// Create an unordered list
-	listNode := UnorderedList("*", list)
+	listNode := NewUnorderedList("*", list)
 
 	// Print the list
 	fmt.Println(listNode)

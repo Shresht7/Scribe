@@ -12,7 +12,7 @@ type NodeLink struct {
 }
 
 // Instantiate a new link with the given contents
-func Link(title, url string) *NodeLink {
+func NewLink(title, url string) *NodeLink {
 	return &NodeLink{
 		URL:   url,
 		Title: title,
@@ -22,4 +22,8 @@ func Link(title, url string) *NodeLink {
 // Implement the Node interface for NodeLink
 func (link *NodeLink) String() string {
 	return "[" + link.Title + "](" + link.URL + ")"
+}
+
+func Link(title, url string) string {
+	return NewLink(title, url).String()
 }
