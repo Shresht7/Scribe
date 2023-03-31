@@ -44,7 +44,7 @@ func main() {
 BlockQuote("text")
 ```
 
-> text
+> > text
 
 ### `Bold`
 
@@ -52,7 +52,7 @@ BlockQuote("text")
 Bold("text")
 ```
 
-**text**
+> **text**
 
 ### `BoldItalic`
 
@@ -60,7 +60,7 @@ Bold("text")
 BoldItalic("text")
 ```
 
-***text***
+> ***text***
 
 ### `Code`
 
@@ -68,7 +68,7 @@ BoldItalic("text")
 Code("text")
 ```
 
-`text`
+> `text`
 
 ### `CodeBlock`
 
@@ -76,9 +76,9 @@ Code("text")
 CodeBlock("fmt.Println(\"Hello World!\")", "go")
 ```
 
-```go
-fmt.Println("Hello World!")
-```
+> ```go
+> fmt.Println("Hello World!")
+> ```
 
 ### `Details`
 
@@ -86,13 +86,13 @@ fmt.Println("Hello World!")
 Details("description", "This is a simple details block")
 ```
 
-<details>
-
-<summary>description</summary>
-
-This is a simple details block
-
-</details>
+> <details>
+> 
+> <summary>description</summary>
+> 
+> This is a simple details block
+> 
+> </details>
 
 ### `FencedBlock`
 
@@ -100,9 +100,9 @@ This is a simple details block
 FencedBlock("This is a fenced block")
 ```
 
-```
-This is a fenced block
-```
+> ```
+> This is a fenced block
+> ```
 
 ### `FrontMatter`
 
@@ -110,9 +110,9 @@ This is a fenced block
 FrontMatter("yaml", "title: Hello World")
 ```
 
-```yaml
-title: Hello World
-```
+> ```yaml
+> title: Hello World
+> ```
 
 ### `Heading`
 
@@ -120,7 +120,7 @@ title: Hello World
 Heading(4, "Sub-Heading")
 ```
 
-#### Sub-Heading
+> #### Sub-Heading
 
 ### `HorizontalRule`
 
@@ -128,7 +128,7 @@ Heading(4, "Sub-Heading")
 HorizontalRule('-', 3)
 ```
 
----
+> ---
 
 ### `Image`
 
@@ -136,7 +136,7 @@ HorizontalRule('-', 3)
 Image("Image of a cat", "[ImageUrl]")
 ```
 
-![Image of a cat](ImageUrl)
+> ![Image of a cat](ImageUrl)
 
 ### `Italic`
 
@@ -144,7 +144,7 @@ Image("Image of a cat", "[ImageUrl]")
 Italic("text")
 ```
 
-*text*
+> *text*
 
 ### `Link`
 
@@ -152,7 +152,7 @@ Italic("text")
 Link("Link to GitHub Homepage", "https://github.com")
 ```
 
-[Link to GitHub Homepage](https://github.com)
+> [Link to GitHub Homepage](https://github.com)
 
 ### `List`
 
@@ -160,17 +160,17 @@ Link("Link to GitHub Homepage", "https://github.com")
 UnorderedList([]string{"Item 1", "Item 2", "Item 3"})
 ```
 
-- Item 1
-- Item 2
-- Item 3
+> - Item 1
+> - Item 2
+> - Item 3
 
 ```go
 OrderedList([]string{"Item 1", "Item 2", "Item 3"})
 ```
 
-1. Item 1
-2. Item 2
-3. Item 3
+> 1. Item 1
+> 2. Item 2
+> 3. Item 3
 
 ### `Paragraph`
 
@@ -178,7 +178,7 @@ OrderedList([]string{"Item 1", "Item 2", "Item 3"})
 Paragraph("This is a simple paragraph")
 ```
 
-This is a simple paragraph
+> This is a simple paragraph
 
 ### `Strikethrough`
 
@@ -186,7 +186,7 @@ This is a simple paragraph
 Strikethrough("text")
 ```
 
-~~text~~
+> ~~text~~
 
 ### `Table`
 
@@ -194,10 +194,10 @@ Strikethrough("text")
 Table([]string{"Name", "Age"}, [][]string{{"John", "21"}, {"Jane", "22"}})
 ```
 
-| Name | Age |
-| ---- | --- |
-| John | 21  |
-| Jane | 22  |
+> | Name | Age |
+> | ---- | --- |
+> | John | 21  |
+> | Jane | 22  |
 
 ### `TaskList`
 
