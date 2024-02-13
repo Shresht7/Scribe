@@ -7,13 +7,10 @@ import (
 
 //* NODE INTERFACE *//
 
-// Node is an interface for all nodes in the AST (Abstract Syntax Tree).
+// Node is an interface that all nodes must satisfy.
 type Node interface {
-	// ? Consider adding a `Type()` method to return the type of the node
-	// Implement the Stringer interface
-	String() string
-	// Implement the io.Writer interface
-	io.Writer
+	String() string // Implement the Stringer interface
+	io.Writer       // Implement the io.Writer interface
 }
 
 //* NODE LITERAL *//
