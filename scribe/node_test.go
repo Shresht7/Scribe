@@ -27,6 +27,21 @@ func TestNodeLiteral(t *testing.T) {
 			literal:     &NodeLiteral{"Hello World"},
 			want:        "Hello World",
 		},
+		{
+			description: "Literal with Integer Value",
+			literal:     NewLiteral(1),
+			want:        "1",
+		},
+		{
+			description: "Literal with Boolean Value",
+			literal:     NewLiteral(true),
+			want:        "true",
+		},
+		{
+			description: "Literal with Slice Value",
+			literal:     NewLiteral([]int{1, 2, 3}),
+			want:        "[1 2 3]",
+		},
 	}
 
 	// Run Test Cases
