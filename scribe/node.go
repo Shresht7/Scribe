@@ -37,9 +37,7 @@ func (literal *NodeLiteral) String() string {
 // Implement the io.Writer interface for NodeLiteral.
 // Writes the given bytes to the literal node.
 func (literal *NodeLiteral) Write(p []byte) (int, error) {
-	// Append the bytes to the literal value
 	literal.value += string(p)
-	// Return the number of bytes written
 	return len(p), nil
 }
 

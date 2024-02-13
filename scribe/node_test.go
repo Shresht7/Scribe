@@ -79,6 +79,12 @@ func TestNodeLiteral_Write(t *testing.T) {
 			input:       " World",
 			want:        "Hello World",
 		},
+		{
+			description: "Literal with Integer Value",
+			literal:     NewLiteral(1),
+			input:       " 2 3",
+			want:        "1 2 3",
+		},
 	}
 
 	// Run Test Cases
