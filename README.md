@@ -26,9 +26,27 @@ import (
 )
 
 func main() {
+    
+    // Creating a Markdown document
     doc := markdown.NewDocument()
+    doc.AddHeading(2, "This is a sub-heading")
     doc.AddParagraph("Hello World!")
     fmt.Println(doc)
+
+    // Output:
+    // ## This is a sub-heading
+    // Hello World!
+
+    // Alternatively, you can use the `AppendChild` method to add nodes to the document
+
+    doc.AppendChild(
+        markdown.Heading(2, "This is a sub-heading")
+        markdown.Paragraph("Hello World!")
+    )
+
+    // Or, use any func directly
+    fmt.Println(markdown.Bold("Hello World!")) // **Hello World!**
+
 }
 ```
 
@@ -54,7 +72,7 @@ func main() {
 
 ---
 
-## 📕 API Reference
+## 📕 Markdown API Reference
 
 ### `Blockquote`
 
@@ -216,10 +234,6 @@ Table([]string{"Name", "Age"}, [][]string{{"John", "21"}, {"Jane", "22"}})
 > | ---- | --- |
 > | John | 21  |
 > | Jane | 22  |
-
-### `TaskList`
-
-<!-- TODO: TaskList (map[string]bool) -->
 
 ---
 
