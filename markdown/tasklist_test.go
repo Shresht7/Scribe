@@ -85,27 +85,3 @@ func TestTaskList(t *testing.T) {
 	}
 
 }
-
-func TestToTaskList(t *testing.T) {
-
-	// Task List
-	tasks := map[string]bool{
-		"Task 1": true,
-		"Task 2": false,
-	}
-
-	// Convert to task list
-	taskList := ToTaskList(tasks)
-
-	// Expected task list
-	expected := helpers.HereDoc(`
-		- [x] Task 1
-		- [ ] Task 2
-	`)
-
-	// Check
-	if taskList.String() != expected {
-		t.Errorf("Expected %s, got %s", expected, taskList.String())
-	}
-
-}

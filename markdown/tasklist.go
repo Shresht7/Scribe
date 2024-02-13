@@ -51,12 +51,3 @@ func (n *NodeTaskList) String() string {
 	}
 	return strings.Join(res, "\n")
 }
-
-// ToTaskList converts a map of tasks to a task list node.
-func ToTaskList(tasks map[string]bool) *NodeTaskList {
-	taskList := NewNodeTaskList()
-	for text, checked := range tasks {
-		taskList.AddTask(text, checked)
-	}
-	return taskList
-}
