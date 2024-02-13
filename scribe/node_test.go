@@ -110,13 +110,25 @@ func ExampleNodeLiteral() {
 	node := &NodeLiteral{"Hello"}
 	fmt.Println(node)
 
-	// or use the Literal() function
+	// or use the NewLiteral() function
 	node = NewLiteral("World")
+	fmt.Println(node)
+
+	// NewLiteral() can also be used with other types
+
+	// Like integers
+	node = NewLiteral(1)
+	fmt.Println(node)
+
+	// And Slices
+	node = NewLiteral([]int{1, 2, 3})
 	fmt.Println(node)
 
 	// Output:
 	// Hello
 	// World
+	// 1
+	// [1 2 3]
 
 }
 
