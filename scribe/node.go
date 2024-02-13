@@ -1,6 +1,7 @@
 package scribe
 
 import (
+	"fmt"
 	"io"
 	"strings"
 )
@@ -18,12 +19,12 @@ type Node interface {
 // NodeLiteral is a node containing a literal value. It is the most
 // basic implementation of the Node interface (Leaf Node).
 type NodeLiteral struct {
-	// TODO: Accept anything and try to convert it to a string
 	value string
 }
 
 // NewLiteral creates a new NodeLiteral with the given value.
-func NewLiteral(value string) *NodeLiteral {
+func NewLiteral(v any) *NodeLiteral {
+	value := fmt.Sprintf("%v", v)
 	return &NodeLiteral{value}
 }
 
