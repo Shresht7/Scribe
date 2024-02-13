@@ -86,14 +86,13 @@ func (container *NodeContainer) AppendChild(nodes ...any) *NodeContainer {
 		// Append the node to the parent
 		switch v := node.(type) {
 
-		case string:
-			// If the node is a string, then create a new NodeLiteral
-			container.Nodes = append(container.Nodes, &NodeLiteral{v})
-			// TODO: Change this case to default and let NodeLiteral handle the conversion
-
 		case Node:
 			// If the node is a Node, then append it directly
 			container.Nodes = append(container.Nodes, v)
+
+		default:
+			// If the node is anything else, then create a new NodeLiteral
+			container.Nodes = append(container.Nodes, NewLiteral(v))
 
 		}
 	}
