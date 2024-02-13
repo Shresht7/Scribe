@@ -1,20 +1,18 @@
 # `Scribe`
 
-A library to programmatically generate markdown.
-
-<h2 align="center">⚠️ WORK IN PROGRESS ⚠️</h2>
-
-## Features
-
-- Programmatically generate markdown from structured data
+A super simple library to programmatically generate text.
 
 ---
 
-## Installation
+## 📦 Packages
 
-```sh
-go get github.com/Shresht7/Scribe/markdown
-```
+### `scribe`
+
+The `scribe` package doesn't do much on its own, but provides the foundation for the other packages to build upon.
+
+### `markdown`
+
+The `markdown` package provides a simple way to generate markdown content programmatically.
 
 ## Usage
 
